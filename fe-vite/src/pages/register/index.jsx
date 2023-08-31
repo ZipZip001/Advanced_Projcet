@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
-
+import './register.scss';
 
 const RegisterPage = () => {
 
@@ -12,21 +12,22 @@ const RegisterPage = () => {
     };
 
 return(    
-    
-    <div  style={{padding: '100px'}}>
-        <h3 style={{textAlign: 'center'}}>Register</h3>
+
+    <div className='Log' style={{padding: '100px'}}>
+        <h3 className='main'>Register</h3>
     <Form
         name="basic"
-        labelCol={{span: 8,}}
-        wrapperCol={{span: 16,}}
-        style={{maxWidth: 600, margin: '0 auto'}}
-        initialValues={{remember: true,}}
+        // labelCol={{span: 8,}}
+        // wrapperCol={{span: 16}}
+        // style={{maxWidth: 600, margin: '0 auto'}}
+        // initialValues={{remember: true,}}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
     >
     <Form.Item
-        label="Username"
+        labelCol= {{span:24}} //whole colum
+        label="Họ Tên"
         name="username"
         rules={[
             {
@@ -39,6 +40,7 @@ return(
     </Form.Item>
 
     <Form.Item
+        labelCol= {{span:24}} //whole colum
         label="Email"
         name="email"
         rules={[
@@ -52,19 +54,21 @@ return(
     </Form.Item>
 
     <Form.Item
-    label="Password"
-    name="password"
-    rules={[
-        {
-        required: true,
-        message: 'Please input your password!',
-        },
-    ]}
-    >
+        labelCol= {{span:24}} //whole colum
+        label="Password"
+        name="password"
+        rules={[
+            {
+            required: true,
+            message: 'Please input your password!',
+            },
+        ]}
+        >
     <Input.Password />
     </Form.Item>
 
     <Form.Item
+        labelCol= {{span:24}} //whole colum
         label="Phone"
         name="phone"
         rules={[
@@ -77,14 +81,9 @@ return(
     <Input />
     </Form.Item>
 
-    <Form.Item
-    wrapperCol={{
-        offset: 8,
-        span: 16,
-    }}
-    >
-    <Button type="primary" htmlType="submit">
-        Submit
+    <Form.Item>
+    <Button type="primary" htmlType="submit" >
+        Đăng ký
     </Button>
     </Form.Item>
     </Form>
