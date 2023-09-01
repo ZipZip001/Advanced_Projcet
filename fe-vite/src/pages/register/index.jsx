@@ -1,11 +1,30 @@
-import React from 'react';
-import { Button, Checkbox, Form, Input } from 'antd';
+import React, { useState } from 'react';
+import { Button, Checkbox, Descriptions, Form, Input, notification } from 'antd';
 import './register.scss';
+import { Link, useNavigate } from 'react-router-dom';
+// folder
+import { callRegister } from '../../services/api';
 
-const RegisterPage = () => {
+const  RegisterPage = () => {
+    const navigate = useNavigate();
+    const [isSubmit, setIsSubmit] = useState(false)
 
-    const onFinish = (values) => {
-        console.log('Success:', values);
+    const onFinish = async(values) => {
+        const {fullName, email, password, phone} =values;
+        setIsSubmit(true);
+        const res = await callRegister(fullName, email, password, phone);
+        setIsSubmit(false);
+        if(res?.data?.id){
+            message.success("Đăng ký tài khoản thành công");
+            navigate('/login')
+        }else{
+            notification.error({
+                message: "Có lỗi xảy ra ",
+                description:
+                    res.message && res.message.length > 0 ? res.message[0] : res.message ,
+                duration : 5
+            })
+        }
     };
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
@@ -28,7 +47,7 @@ return(
     <Form.Item
         labelCol= {{span:24}} //whole colum
         label="Họ Tên"
-        name="username"
+        name="fullName"
         rules={[
             {
             required: true,
@@ -82,10 +101,17 @@ return(
     </Form.Item>
 
     <Form.Item>
-    <Button type="primary" htmlType="submit" >
+    <Button type="primary" htmlType="submit" loading={isSubmit}>
         Đăng ký
     </Button>
     </Form.Item>
+
+    <p className="text text-normal">
+        Đã có tài khoản
+        <span>
+            <Link to='/login'> Đăng nhập </Link>
+        </span>
+    </p>
     </Form>
 
 </div>
