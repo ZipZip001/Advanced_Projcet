@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Checkbox, Descriptions, Form, Input, notification } from 'antd';
+import { Button, Checkbox, Descriptions, Form, Input, message, notification } from 'antd';
 import './register.scss';
 import { Link, useNavigate } from 'react-router-dom';
 // folder
@@ -14,7 +14,7 @@ const  RegisterPage = () => {
         setIsSubmit(true);
         const res = await callRegister(fullName, email, password, phone);
         setIsSubmit(false);
-        if(res?.data?.id){
+        if(res?.data?._id){
             message.success("Đăng ký tài khoản thành công");
             navigate('/login')
         }else{
@@ -36,10 +36,7 @@ return(
         <h3 className='main'>Register</h3>
     <Form
         name="basic"
-        // labelCol={{span: 8,}}
-        // wrapperCol={{span: 16}}
-        // style={{maxWidth: 600, margin: '0 auto'}}
-        // initialValues={{remember: true,}}
+
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
@@ -101,9 +98,9 @@ return(
     </Form.Item>
 
     <Form.Item>
-    <Button type="primary" htmlType="submit" loading={isSubmit}>
-        Đăng ký
-    </Button>
+        <Button type="primary" htmlType="submit" loading={isSubmit}>
+            Đăng ký
+        </Button>
     </Form.Item>
 
     <p className="text text-normal">
