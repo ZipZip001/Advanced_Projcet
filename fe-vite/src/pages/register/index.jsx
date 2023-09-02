@@ -31,7 +31,6 @@ const  RegisterPage = () => {
     };
 
 return(    
-
     <div className='Log' style={{padding: '100px'}}>
         <h3 className='main'>Register</h3>
     <Form
@@ -42,7 +41,7 @@ return(
         autoComplete="off"
     >
     <Form.Item
-        labelCol= {{span:24}} //whole colum
+        labelCol= {{span:24}} 
         label="Họ Tên"
         name="fullName"
         rules={[
@@ -56,7 +55,7 @@ return(
     </Form.Item>
 
     <Form.Item
-        labelCol= {{span:24}} //whole colum
+        labelCol= {{span:24}} 
         label="Email"
         name="email"
         rules={[

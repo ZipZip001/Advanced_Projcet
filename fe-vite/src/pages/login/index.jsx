@@ -1,33 +1,46 @@
 // import React from 'react';
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button, Checkbox, Form, Input, message, notification } from 'antd';
 import './login.scss'
+import { callLogin } from '../../services/api';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 const LoginPage = () => {
+    const navigate = useNavigate();
+    const [isSubmit, setIsSubmit] = useState(false)
 
-    const onFinish = (values) => {
-        console.log('Success:', values);
-    };
-    const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
+    const onFinish = async(values) => {
+        const { username, password } = values;
+        setIsSubmit(true);
+        const res = await callLogin( username, password );
+        setIsSubmit(false);
+        if(res?.data){
+            localStorage.setItem('access_token', res.data.access_token);            //access token
+            message.success("Đăng nhập tài khoản thành công");
+            navigate("/")
+        }else{
+            notification.error({
+                message:"Có lỗi xảy ra",
+                discription:
+                    res.message && Array.isArray(res.message) ? res.message[0] : res.message,
+                duration:5
+            })
+        }
     };
 
-    return(    
-    
+
+return(     
     <div className='Log' style={{padding: '50px', border: '1px solid #ccc' }}>
         <h3 className='main' >Đăng nhập</h3>
     <Form
-        // name="basic"
-        // labelCol={{span: 8,}}
-        // wrapperCol={{span: 16,}}
-        // style={{maxWidth: 600, margin: '0 auto'}}
         initialValues={{remember: true,}}
         onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
         autoComplete="off"
     >
+
     <Form.Item
-        labelCol= {{span:24}} //whole colum
-        label="User"
+        labelCol= {{span:24}} 
+        label="Email"
         name="username"
         rules={[
             {
@@ -40,7 +53,7 @@ const LoginPage = () => {
     </Form.Item>
 
     <Form.Item
-        labelCol= {{span:24}} //whole colum
+        labelCol= {{span:24}} 
         label="Password"
         name="password"
         rules={[
@@ -53,16 +66,14 @@ const LoginPage = () => {
     <Input.Password />
     </Form.Item>
 
-
     <Form.Item>
-    <Button type="primary" htmlType="submit" loading={true}>
+    <Button type="primary" htmlType="submit" loading={isSubmit}>
         Đăng nhập
     </Button>
     </Form.Item>
     </Form>
 </div>
-
-);   
+    );   
 }
 
 export default LoginPage;
