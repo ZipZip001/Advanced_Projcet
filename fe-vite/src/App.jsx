@@ -9,10 +9,9 @@ import Footer from './components/footer/footer';
 import Home from './components/home/home';
 import RegisterPage from './pages/register';
 import { fetchAccount } from './services/api';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { doGetAccountAction } from './redux/account/accountSlice';
-import Loading from './components/loading';
-import useSelection from 'antd/es/table/hooks/useSelection';
+import Loading from './components/Loading';
 import NotFound from './components/NotFound';
 import AdminPage from './components/admin/index'
 import ProtectedRoute from './components/ProtectedRoute';
@@ -27,16 +26,26 @@ const Layout = () => {
   )
 }
 
+const LayoutAdmin = () => {
+  return (
+    <div className='layout-app'>
+      {isAdminRoute && userRole === 'ADMIN' && <Header/>}
+      {/* <Header/> */}
+        <Outlet/>
+      {/* <Footer/> */}
+      {isAdminRoute && userRole === 'ADMIN' && <Footer/>}
+    </div>
+  )
+}
+
 
 export default function App() {
   const dispatch = useDispatch();
-  const isAuthenticated = useSelection(state => state.account.isAuthenticated)
+  const isAuthenticated = useSelector(state => state.account.isAuthenticated)
 
   const getAccount = async () => {
-    if(window.location.pathname === '/login'){
-      window.location.pathname === '/admin'
-      return;
-    }
+    if(window.location.pathname === '/login' )return;
+   
     const res = await fetchAccount();
     if(res && res.data){
       dispatch(doGetAccountAction(res.data))
@@ -61,6 +70,7 @@ export default function App() {
           path: "books",
           element: <ContactPage />,
         },
+
       ],
     },
 
@@ -95,24 +105,22 @@ export default function App() {
       path: "/register",
       element: <RegisterPage/>,
     },
-    {
-      path: "/admin/user",
-      element: <RegisterPage/>,
-    }
+    // {
+    //   path: "/admin/user",
+    //   element: <RegisterPage/>,
+    // }
   ]);
 
   return (
     <>
-      {isAuthenticated === true  
+      {isAuthenticated === true      
       || window.location.pathname === '/login' 
-      || window.location.pathname === '/register'
-      || window.location.pathname === '/admin' ?
+      // || window.location.pathname === '/admin' 
+      ?
       <RouterProvider router={router} /> 
       :
       <Loading/>
-      }
-
-
+      } 
     </>
   )
 }

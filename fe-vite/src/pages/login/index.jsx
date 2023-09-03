@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 //call folder
 import './login.scss'
 import { callLogin } from '../../services/api';
-import { loginAction } from '../../redux/account/accountSlice';
+import { doLoginAction } from '../../redux/account/accountSlice';
 
 
 const LoginPage = () => {
@@ -21,9 +21,11 @@ const LoginPage = () => {
         setIsSubmit(true);
         const res = await callLogin( username, password );
         setIsSubmit(false);
+
         if(res?.data){
             localStorage.setItem('access_token', res.data.access_token);//access token
-            dispatch(loginAction(res.data.user));
+            dispatch(doLoginAction(res.data.user));
+
             message.success("Đăng nhập tài khoản thành công");
             navigate("/")
         }else{
