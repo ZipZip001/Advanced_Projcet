@@ -79,9 +79,3 @@
 
 
 
-.app-container {
-  display: flex;
-  justify-content: center; /* Căn ngang giữa màn hình */
-  align-items: center; /* Căn dọc giữa màn hình */
-  height: 100vh; /* Đảm bảo container chiếm toàn bộ chiều cao của màn hình */
-}

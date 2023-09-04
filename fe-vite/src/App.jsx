@@ -13,9 +13,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { doGetAccountAction } from './redux/account/accountSlice';
 import Loading from './components/Loading';
 import NotFound from './components/NotFound';
-import AdminPage from './components/admin/index'
+import AdminPage from './pages/admin/index'
 import ProtectedRoute from './components/ProtectedRoute';
 
+import LayoutAdmin from './components/Admin/LayoutAdmin';
 const Layout = () => {
   return (
     <div className='layout-app'>
@@ -26,22 +27,11 @@ const Layout = () => {
   )
 }
 
-const LayoutAdmin = () => {
-  return (
-    <div className='layout-app'>
-      {isAdminRoute && userRole === 'ADMIN' && <Header/>}
-      {/* <Header/> */}
-        <Outlet/>
-      {/* <Footer/> */}
-      {isAdminRoute && userRole === 'ADMIN' && <Footer/>}
-    </div>
-  )
-}
-
 
 export default function App() {
   const dispatch = useDispatch();
-  const isAuthenticated = useSelector(state => state.account.isAuthenticated)
+  // const isAuthenticated = useSelector(state => state.account.isAuthenticated)
+  const isLoading = useSelector(state => state.account.isLoading)
 
   const getAccount = async () => {
     if(window.location.pathname === '/login' )return;
@@ -77,7 +67,7 @@ export default function App() {
     
     {
       path: "/admin",
-      element: <Layout/>,
+      element: <LayoutAdmin/>,
       errorElement: <NotFound />,
       children: [
         {index: true, element:
@@ -93,6 +83,10 @@ export default function App() {
           path: "books",
           element: <ContactPage />,
         },
+        {
+          path: "orders",
+          element: <ContactPage />,
+        },
       ],
     },
 
@@ -105,21 +99,19 @@ export default function App() {
       path: "/register",
       element: <RegisterPage/>,
     },
-    // {
-    //   path: "/admin/user",
-    //   element: <RegisterPage/>,
-    // }
   ]);
 
   return (
     <>
-      {isAuthenticated === true      
-      || window.location.pathname === '/login' 
-      // || window.location.pathname === '/admin' 
-      ?
-      <RouterProvider router={router} /> 
-      :
-      <Loading/>
+      {
+        isLoading === false      
+        || window.location.pathname === '/login' 
+        || window.location.pathname === '/' 
+        || window.location.pathname === '/register' 
+        ?
+        <RouterProvider router={router} /> 
+        :
+        <Loading/>
       } 
     </>
   )

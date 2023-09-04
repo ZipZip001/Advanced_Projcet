@@ -30,8 +30,12 @@ const  RegisterPage = () => {
         console.log('Failed:', errorInfo);
     };
 
-return(    
-    <div className='Log' style={{padding: '100px'}}>
+return(   
+    
+    <div className="register-page">
+    <main className="main">
+        <div className="container">
+    <div className='Log' style={{padding: '100px', border: '1px solid #ccc' }}>
         <h3 className='main'>Register</h3>
     <Form
         name="basic"
@@ -111,7 +115,9 @@ return(
     </Form>
 
 </div>
-
+</div>
+</main>
+</div>
 );   
 }
 export default RegisterPage;
