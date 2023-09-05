@@ -148,7 +148,7 @@ const LayoutAdmin = () => {
                     <Outlet/>
                 </Content>
                 <Footer style={{ padding: 0 }}>
-                    hahahahahah <HeartTwoTone/>
+                    Admin Footer <HeartTwoTone/>
                 </Footer>
             </Layout>
       </Layout>

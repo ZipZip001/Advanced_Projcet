@@ -17,6 +17,7 @@ import AdminPage from './pages/admin/index'
 import ProtectedRoute from './components/ProtectedRoute';
 
 import LayoutAdmin from './components/Admin/LayoutAdmin';
+import UserTable from './components/Admin/UserTable/UserTable';
 const Layout = () => {
   return (
     <div className='layout-app'>
@@ -76,8 +77,8 @@ export default function App() {
           </ProtectedRoute>
         },
         {
-          path: "contacts",
-          element: <ContactPage />,
+          path: "user",
+          element: <UserTable />,
         },
         {
           path: "books",
