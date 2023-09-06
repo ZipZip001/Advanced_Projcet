@@ -5,7 +5,7 @@ import { callCreateAUser } from '../../../services/api';
 
 const UserModalCreate = (props) => {
     const [isSubmit, setIsSubmit] = useState(false);
-    const {openModalCreate, SetOpenModalCreate} = props;
+    const {openModalCreate, setOpenModalCreate} = props;
     const [form] = Form.useForm();
 
     const onFinish = async (values) => {
@@ -16,7 +16,7 @@ const UserModalCreate = (props) => {
        if(res && res.data){
             message.success('Tạo user thành công');
             form.resetFields(); // Xóa hết data sau khi tạo thành công
-            SetOpenModalCreate(false);
+            setOpenModalCreate(false);
             if (typeof props.fetchUser === 'function') {
                 await props.fetchUser();
             }
@@ -36,7 +36,7 @@ const UserModalCreate = (props) => {
         title="Thêm User" 
         open={openModalCreate} 
         onOk={() => {form.submit()}} 
-        onCancel={() => SetOpenModalCreate(false)}
+        onCancel={() => setOpenModalCreate(false)}
         okText={"Tạo mới"}
         cancelText={"Hủy"}
         confirmLoading={isSubmit}

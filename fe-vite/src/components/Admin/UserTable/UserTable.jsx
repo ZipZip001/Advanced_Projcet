@@ -3,8 +3,9 @@ import { Button, Col, Table, message, notification } from 'antd';
 import { callFetchListUser } from '../../../services/api';
 import InputSearch from './InputSearch';
 
-import { CloudUploadOutlined, ExportOutlined, PlusOutlined, ReloadOutlined } from '@ant-design/icons';
+import { CloudUploadOutlined, EditTwoTone, ExportOutlined, PlusOutlined, ReloadOutlined } from '@ant-design/icons';
 import UserModalCreate from './UserModalCreate';
+import UserModalUpdate from './UserModalUpdate';
 
 
 const UserTable = () => {
@@ -14,11 +15,14 @@ const UserTable = () => {
     const [total, setTotal] = useState(0);
 
     const [refreshTable, setRefreshTable] = useState(false); // Thêm trạng thái làm mới lại bảng
-    const [isLoading, setIsLoading] =useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
-    const[dataViewDetail, setDataViewDetail] = useState()
+    // const[dataViewDetail, setDataViewDetail] = useState()
 
     const [openModalCreate, setOpenModalCreate] = useState(false);
+    const [openModalUpdate, setOpenModalUpdate] = useState(false);
+    const [dataUpdate, setDataUpdate] = useState(null);
+
 
 
     useEffect(() =>{
@@ -37,11 +41,6 @@ const UserTable = () => {
         if (res && res.data) {
             setListUser(res.data.result);
             setTotal(res.data.meta.total);
-            setDataViewDetail(res.data.result)
-            // console.log('listUser:', listUser);
-            // console.log('total:', total);
-            // console.log('dataViewDetail:', dataViewDetail);
-
         }
         setIsLoading(false);
     }
@@ -71,8 +70,17 @@ const UserTable = () => {
           render: (text, record, index) => {
               return(
                   <>
-                      <button>Delete</button>
+                    <button>Delete</button>
+                    <EditTwoTone
+                        onClick={() => {
+                            setOpenModalUpdate(true)
+                            setDataUpdate(record);
+                        }}
+                    >
+
+                    </EditTwoTone>
                   </>
+                  
               )
           }
         },
@@ -110,16 +118,26 @@ const UserTable = () => {
         fetchUser(query);  
     }
 
+    // const handleExportData = () =>{
+    //     if(listUser.length > 0){
+    //         const worksheet = XLSX.utils.json_to_tosheet(listUser)
+    //         const workbook = XLSX.utils.book_new();
+    //         XLSX.utils.book_append_sheet(workbook,worksheet, "Sheet1");
+    //         XLSX.writeFile(workbook, "ExportUser.csv");
+    //     }
+    // }
+
     const renderHeader = () => {
         return(
             <div style={{display: 'flex', justifyContent: 'space-between'}}>
                 <span>Table List User</span>
                 <span style={{ display: 'flex', gap: 15}}>
-                    {/* <Button
+                    <Button
                         icon={<ExportOutlined/>}
                         type= "primary"
+                        // onClick={() => handleExportData()}
                         >Export
-                    </Button> */}
+                    </Button>
                     <Button
                         icon={<CloudUploadOutlined/>}
                         type= "primary"
@@ -170,7 +188,14 @@ const UserTable = () => {
             </Col>       
             <UserModalCreate
                 openModalCreate = {openModalCreate}
-                SetOpenModalCreate ={setOpenModalCreate}
+                setOpenModalCreate ={setOpenModalCreate}
+                fetchUser={fetchUser}
+            />
+
+            <UserModalUpdate
+                openModalUpdate = {openModalUpdate}
+                setOpenModalUpdate ={setOpenModalUpdate}
+                dataUpdate={dataUpdate}
                 fetchUser={fetchUser}
             />
 

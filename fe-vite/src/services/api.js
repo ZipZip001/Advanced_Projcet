@@ -23,3 +23,7 @@ export const callFetchListUser = (query) => {
 export const callCreateAUser = (fullName, password, email, phone) => {
     return axios.post(`/api/v1/user`,{fullName, password, email, phone} )
 }
+
+export const callUpdateUser = (fullName, _id, phone) => {
+    return axios.put(`/api/v1/user`,{fullName, _id, phone} )
+}
