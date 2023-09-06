@@ -68,7 +68,10 @@ export default function App() {
     
     {
       path: "/admin",
-      element: <LayoutAdmin/>,
+      element:  
+      <ProtectedRoute>        
+        <LayoutAdmin/>
+      </ProtectedRoute>,
       errorElement: <NotFound />,
       children: [
         {index: true, element:
@@ -78,7 +81,9 @@ export default function App() {
         },
         {
           path: "user",
-          element: <UserTable />,
+          element: 
+            
+            <UserTable />,
         },
         {
           path: "books",

@@ -32,91 +32,92 @@ const  RegisterPage = () => {
 
 return(   
     
-    <div className="register-page">
+<div className="register-page">
     <main className="main">
         <div className="container">
-    <div className='Log' style={{padding: '100px', border: '1px solid #ccc' }}>
-        <h3 className='main'>Register</h3>
-    <Form
-        name="basic"
+            <section className="wrapper">
+                <div className='Log' style={{padding: '100px', border: '1px solid #ccc' }}>
+                    <h3 className='main'>Register</h3>
+                    <Form
+                        name="basic"
 
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        autoComplete="off"
-    >
-    <Form.Item
-        labelCol= {{span:24}} 
-        label="Họ Tên"
-        name="fullName"
-        rules={[
-            {
-            required: true,
-            message: 'Please input your username!',
-            },
-        ]}
-    >
-    <Input />
-    </Form.Item>
+                        onFinish={onFinish}
+                        onFinishFailed={onFinishFailed}
+                        autoComplete="off"
+                    >
+                    <Form.Item
+                        labelCol= {{span:24}} 
+                        label="Họ Tên"
+                        name="fullName"
+                        rules={[
+                            {
+                            required: true,
+                            message: 'Please input your username!',
+                            },
+                        ]}
+                    >
+                    <Input />
+                    </Form.Item>
 
-    <Form.Item
-        labelCol= {{span:24}} 
-        label="Email"
-        name="email"
-        rules={[
-            {
-            required: true,
-            message: 'Please input your email!',
-            },
-        ]}
-    >
-    <Input />
-    </Form.Item>
+                    <Form.Item
+                        labelCol= {{span:24}} 
+                        label="Email"
+                        name="email"
+                        rules={[
+                            {
+                            required: true,
+                            message: 'Please input your email!',
+                            },
+                        ]}
+                    >
+                    <Input />
+                    </Form.Item>
 
-    <Form.Item
-        labelCol= {{span:24}} //whole colum
-        label="Password"
-        name="password"
-        rules={[
-            {
-            required: true,
-            message: 'Please input your password!',
-            },
-        ]}
-        >
-    <Input.Password />
-    </Form.Item>
+                    <Form.Item
+                        labelCol= {{span:24}} //whole colum
+                        label="Password"
+                        name="password"
+                        rules={[
+                            {
+                            required: true,
+                            message: 'Please input your password!',
+                            },
+                        ]}
+                        >
+                    <Input.Password />
+                    </Form.Item>
 
-    <Form.Item
-        labelCol= {{span:24}} //whole colum
-        label="Phone"
-        name="phone"
-        rules={[
-            {
-            required: true,
-            message: 'Please input your phone!',
-            },
-        ]}
-    >
-    <Input />
-    </Form.Item>
+                    <Form.Item
+                        labelCol= {{span:24}} //whole colum
+                        label="Phone"
+                        name="phone"
+                        rules={[
+                            {
+                            required: true,
+                            message: 'Please input your phone!',
+                            },
+                        ]}
+                    >
+                    <Input />
+                    </Form.Item>
 
-    <Form.Item>
-        <Button type="primary" htmlType="submit" loading={isSubmit}>
-            Đăng ký
-        </Button>
-    </Form.Item>
+                    <Form.Item>
+                        <Button type="primary" htmlType="submit" loading={isSubmit}>
+                            Đăng ký
+                        </Button>
+                    </Form.Item>
 
-    <p className="text text-normal">
-        Đã có tài khoản
-        <span>
-            <Link to='/login'> Đăng nhập </Link>
-        </span>
-    </p>
-    </Form>
-
-</div>
-</div>
-</main>
+                    <p className="text text-normal">
+                        Đã có tài khoản
+                        <span>
+                            <Link to='/login'> Đăng nhập </Link>
+                        </span>
+                    </p>
+                    </Form>
+                </div>
+            </section>
+        </div>
+    </main> 
 </div>
 );   
 }

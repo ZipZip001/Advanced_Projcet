@@ -1,25 +1,27 @@
 import React, { useState } from 'react';
 import { AppstoreOutlined, DownOutlined, ExceptionOutlined, HeartTwoTone, MenuFoldOutlined, MenuUnfoldOutlined, TeamOutlined, UserOutlined } from '@ant-design/icons';  //DollarCir
-import { Dropdown, Layout, Menu, Space, Switch } from 'antd';
+import { Dropdown, Layout, Menu, Space, Switch, message } from 'antd';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './layout.scss';
+import { callLogout } from '../../services/api';
+import { doLogoutAction } from '../../redux/account/accountSlice';
 const {Content, Footer, Sider} = Layout
 
 const items = [
     {
-        label: <Link to='/admin'>Dashboard</Link>,
+        label: <Link to='/admin'>Main Page</Link>,
         key: 'dasboard',
         icon:<AppstoreOutlined/>
     },
 
     {
         label: <span>Manage Users</span>,
-        //key : 'user
+
         icon: <UserOutlined/>,
         children: [
             {
-                label: <Link to='/admin/user'>Dashboard</Link>,
+                label: <Link to='/admin/user'>User Infor</Link>,
                 key: 'user',
                 icon:<AppstoreOutlined/>
             },
@@ -108,13 +110,14 @@ const LayoutAdmin = () => {
         className='layout-admin'
         >
             <Sider
-                theme = 'light'
+                theme={theme}
                 collapsible
                 collapsed = {collapsed}
+                mode="inline"
                 onCollapse={(value) => setCollapsed(value)}
             >
-                <div style={{height: 32, margin: 16, textAlign: 'center'}}>
-                    Admin
+                <div style={{height: 32, margin: 16, textAlign: 'center', color:"#5C8374"}}>
+                    <span>ADMIN PAGE</span>
                 </div>
                 
                 <Menu
@@ -152,6 +155,7 @@ const LayoutAdmin = () => {
                 </Footer>
             </Layout>
       </Layout>
+      
     </>
   );
 };

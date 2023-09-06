@@ -43,55 +43,58 @@ return(
     <div className='login-page'>  
         <main className="main">
             <div className="container">
-                <div className='Log' style={{padding: '50px', border: '1px solid #ccc' }}>
-                    <h3 className='main' >Đăng nhập</h3>
-                    <Form
-                    initialValues={{remember: true,}}
-                    onFinish={onFinish}
-                    autoComplete="off"
-                    >
+                <section className='wrapper'>
+                        <div className='Log' style={{padding: '50px', border: '1px solid #ccc' }}>
+                            <h3 className='main' >Đăng nhập</h3>
+                            <Form
+                            initialValues={{remember: true,}}
+                            onFinish={onFinish}
+                            autoComplete="off"
+                            >
 
-                    <Form.Item
-                        labelCol= {{span:24}} 
-                        label="Email"
-                        name="username"
-                        rules={[
-                            {
-                            required: true,
-                            message: 'Please input your username!',
-                            },
-                        ]}
-                        >
-                    <Input />
-                    </Form.Item>
+                            <Form.Item
+                                labelCol= {{span:24}} 
+                                label="Email"
+                                name="username"
+                                rules={[
+                                    {
+                                    required: true,
+                                    message: 'Please input your username!',
+                                    },
+                                ]}
+                                >
+                            <Input />
+                            </Form.Item>
 
-                    <Form.Item
-                        labelCol= {{span:24}} 
-                        label="Password"
-                        name="password"
-                        rules={[
-                            {
-                            required: true,
-                            message: 'Please input your password!',
-                            },
-                        ]}
-                        >
-                    <Input.Password />
-                    </Form.Item>
+                            <Form.Item
+                                labelCol= {{span:24}} 
+                                label="Password"
+                                name="password"
+                                rules={[
+                                    {
+                                    required: true,
+                                    message: 'Please input your password!',
+                                    },
+                                ]}
+                                >
+                            <Input.Password />
+                            </Form.Item>
 
-                    <Form.Item>
-                    <Button type="primary" htmlType="submit" loading={isSubmit}>
-                        Đăng nhập
-                    </Button>
-                    </Form.Item>
-                    </Form>
-                    <p className="text text-normal">
-                        Chưa có tài khoản
-                        <span>
-                            <Link to='/register'> Đăng ký </Link>
-                        </span>
-                    </p>
-            </div>
+                            <Form.Item>
+                            <Button type="primary" htmlType="submit" loading={isSubmit}>
+                                Đăng nhập
+                            </Button>
+                            </Form.Item>
+                            </Form>
+                            <p className="text text-normal">
+                                Chưa có tài khoản
+                                <span>
+                                    <Link to='/register'> Đăng ký </Link>
+                                </span>
+                            </p>
+                    </div>
+
+            </section>
         </div>
     </main>  
 </div> 

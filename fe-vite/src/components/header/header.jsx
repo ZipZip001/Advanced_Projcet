@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import {VscSearchFuzzy} from 'react-icons/vsc'
-import {FaReact} from 'react-icons/fa'
 import {FiShoppingCart} from 'react-icons/fi'
 import {BsFillPhoneFill} from 'react-icons/bs'
 
@@ -32,7 +31,7 @@ const Header = () => {
 
     const items = [
         {
-            label: <label style={{ cursor: 'pointer' }}>Quản lý tài khoản</label>,
+            label: <label style={{ cursor: 'pointer' }}>Quản lý tài khoảng</label>,
             key: 'account',
         },
         {
@@ -93,7 +92,7 @@ const Header = () => {
                     </nav>
                 </header>
             </div>
-            <Drawer
+            {/* <Drawer
                 title="Menu chức năng"
                 placement="left"
                 onClose={() => setOpenDrawer(false)}
@@ -104,7 +103,7 @@ const Header = () => {
 
                 <p>Đăng xuất</p>
                 <Divider />
-            </Drawer>
+            </Drawer> */}
         </>
     )
 }

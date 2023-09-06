@@ -4,7 +4,7 @@ const Footer = () => {
     return(
         <footer>
             <div>
-                This is Footer for my React
+                {/* This is Footer for my React */}
             </div>
         </footer>
     )
