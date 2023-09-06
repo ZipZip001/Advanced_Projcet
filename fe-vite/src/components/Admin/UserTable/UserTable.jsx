@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Button, Col, Table, message, notification } from 'antd';
 import { callFetchListUser } from '../../../services/api';
 import InputSearch from './InputSearch';
-import {RxReload} from 'react-icons/rx'
+
 import { CloudUploadOutlined, ExportOutlined, PlusOutlined, ReloadOutlined } from '@ant-design/icons';
+import UserModalCreate from './UserModalCreate';
 
 
 const UserTable = () => {
@@ -17,6 +18,7 @@ const UserTable = () => {
 
     const[dataViewDetail, setDataViewDetail] = useState()
 
+    const [openModalCreate, setOpenModalCreate] = useState(false);
 
 
     useEffect(() =>{
@@ -36,9 +38,9 @@ const UserTable = () => {
             setListUser(res.data.result);
             setTotal(res.data.meta.total);
             setDataViewDetail(res.data.result)
-            console.log('listUser:', listUser);
-            console.log('total:', total);
-            console.log('dataViewDetail:', dataViewDetail);
+            // console.log('listUser:', listUser);
+            // console.log('total:', total);
+            // console.log('dataViewDetail:', dataViewDetail);
 
         }
         setIsLoading(false);
@@ -48,17 +50,6 @@ const UserTable = () => {
         {
           title: 'Id',
           dataIndex: '_id',
-        //   render: (text, record, index) => {
-        //     return(
-        //         <a href="#" onClick={() => {
-        //             setDataViewDetail(record);
-        //             setOpenViewDetail(true)
-
-        //         }}>{record._id}
-
-        //         </a>
-        //     )
-        //   }
         },
         {
           title: 'Họ tên',
@@ -143,7 +134,7 @@ const UserTable = () => {
                     <Button
                         onClick={handleReload}
                         icon={<ReloadOutlined/>}
-                        >Export
+                        >
                     </Button>
                 </span>
             </div>
@@ -177,6 +168,11 @@ const UserTable = () => {
                     // key={refreshTable} 
                 />
             </Col>       
+            <UserModalCreate
+                openModalCreate = {openModalCreate}
+                SetOpenModalCreate ={setOpenModalCreate}
+                fetchUser={fetchUser}
+            />
 
         </>
     )

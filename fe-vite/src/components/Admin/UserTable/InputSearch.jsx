@@ -29,11 +29,10 @@ const InputSearch = (props) => {
           onFinish(values);
         });
     };
-    console.log(handleSearchClick);
 
     const handleClearClick = () => {
         form.resetFields(); 
-        props.handleSearch(query);
+        // props.handleSearch(query);
     };
 
     return(
