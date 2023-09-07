@@ -27,3 +27,7 @@ export const callCreateAUser = (fullName, password, email, phone) => {
 export const callUpdateUser = (fullName, _id, phone) => {
     return axios.put(`/api/v1/user`,{fullName, _id, phone} )
 }
+
+export const callDeleteUser = ( _id) => {
+    return axios.delete(`/api/v1/user/${_id}`)
+}

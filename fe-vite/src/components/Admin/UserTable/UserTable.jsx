@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Col, Table, message, notification } from 'antd';
-import { callFetchListUser } from '../../../services/api';
+import { Button, Col, Popconfirm, Table, message, notification } from 'antd';
+import { callDeleteUser, callFetchListUser } from '../../../services/api';
 import InputSearch from './InputSearch';
 
-import { CloudUploadOutlined, EditTwoTone, ExportOutlined, PlusOutlined, ReloadOutlined } from '@ant-design/icons';
+import { CloudUploadOutlined, DeleteTwoTone, EditTwoTone, ExportOutlined, PlusOutlined, ReloadOutlined } from '@ant-design/icons';
 import UserModalCreate from './UserModalCreate';
 import UserModalUpdate from './UserModalUpdate';
 
@@ -70,14 +70,24 @@ const UserTable = () => {
           render: (text, record, index) => {
               return(
                   <>
-                    <button>Delete</button>
+                    <Popconfirm
+                        placement="leftTop"
+                        title={"Xác nhận xóa user"}
+                        description={"Bạn có chắc chắn muốn xóa user này ?"}
+                        onConfirm={() => handleDeleteUser(record._id)}
+                        okText="Xác nhận"
+                        cancelText="Hủy"
+                    
+                    >
+                        <DeleteTwoTone/>
+                    </Popconfirm>
+
                     <EditTwoTone
                         onClick={() => {
                             setOpenModalUpdate(true)
                             setDataUpdate(record);
                         }}
                     >
-
                     </EditTwoTone>
                   </>
                   
