@@ -11,13 +11,11 @@ import UserModalUpdate from './UserModalUpdate';
 const UserTable = () => {
     const [listUser, setListUser] = useState([]);
     const [current, setCurrent] = useState(1);
-    const [pageSize, setPageSize] = useState(2);
+    const [pageSize, setPageSize] = useState(5);
     const [total, setTotal] = useState(0);
 
-    const [refreshTable, setRefreshTable] = useState(false); // Thêm trạng thái làm mới lại bảng
+    const [refreshTable, setRefreshTable] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-
-    // const[dataViewDetail, setDataViewDetail] = useState()
 
     const [openModalCreate, setOpenModalCreate] = useState(false);
     const [openModalUpdate, setOpenModalUpdate] = useState(false);

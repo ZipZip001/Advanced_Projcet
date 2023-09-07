@@ -6,7 +6,7 @@ import LoginPage from './pages/login';
 import ContactPage from './pages/contact/contact';
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
-import Home from './components/home/home';
+import Home from './components/home/index';
 import RegisterPage from './pages/register';
 import { fetchAccount } from './services/api';
 import { useDispatch, useSelector } from 'react-redux';
