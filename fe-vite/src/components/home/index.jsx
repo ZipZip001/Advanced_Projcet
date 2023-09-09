@@ -1,5 +1,5 @@
 import { FilterTwoTone, ReloadOutlined } from '@ant-design/icons';
-import { Row, Col, Form, Checkbox, Divider, InputNumber, Button, Rate, Tabs, Pagination } from 'antd';
+import { Row, Col, Form, Checkbox, Divider, InputNumber, Button, Rate, Tabs, Pagination, Spin } from 'antd';
 import './home.scss';
 import { useEffect, useState } from 'react';
 import { callFetchCategory, callFetchListBook } from '../../services/api';
@@ -186,50 +186,54 @@ const Home = () => {
                     </Form>
                 </Col>
                 <Col md={20} xs={24} style={{ border: "1px solid red" }}>
-                    <Row>
-                        <Tabs 
-                            defaultActiveKey="sort=-sold"
-                            items={items}
-                            onChange={(value) => {setSortQuery(value)}}
-                            style={{overflowX: "auto"}}
-                        />
-                    </Row>
-                    <Row className='customize-row'>
-                        {listBook?.map((item, index) => {
-                            return(
-                                <div className='colum' key={`book-${index}`}>
-                                    <div className='wrapper'>
-                                        <div className="thumbnail">
-                                        <img src={`${import.meta.env.VITE_BACKEND_URL}/images/book/${item.thumbnail}`} alt="thumbnail book" />
- 
-                                            {/* <img src="http://localhost:8080/images/book/3-931186dd6dcd231da1032c8220332fea.jpg" alt="thumbnail book" /> */}
+                    <Spin spinning={isLoading} tip="Loading">
+                        <div style={{padding:"20px", background:"#fff", borderRadius: 5}}>
+                        <Row>
+                            <Tabs 
+                                defaultActiveKey="sort=-sold"
+                                items={items}
+                                onChange={(value) => {setSortQuery(value)}}
+                                style={{overflowX: "auto"}}
+                            />
+                        </Row>
+                        <Row className='customize-row'>
+                            {listBook?.map((item, index) => {
+                                return(
+                                    <div className='column' key={`book-${index}`}>
+                                        <div className='wrapper'>
+                                            <div className="thumbnail">
+                                            <img src={`${import.meta.env.VITE_BACKEND_URL}/images/book/${item.thumbnail}`} alt="thumbnail book" />
+    
+                                            </div>
+                                            <div className="text" title={item.mainText}>{item.mainText}</div>
+                                            <div className="price">
+                                                {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(item.price)}
+                                            </div>
+                                            <div className='rating'>
+                                                <Rate value={5} disabled style={{ color: '#ffce3d', fontSize: 10 }} />
+                                                <br />
+                                                <span>Đã bán {item.sold} </span>
+                                            </div>
                                         </div>
-                                        <div className="text" title={item.mainText}>{item.mainText}</div>
-                                        <div className="price">
-                                            {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(item.price)}
-                                        </div>
-                                        <div className='rating'>
-                                            <Rate value={5} disabled style={{ color: '#ffce3d', fontSize: 10 }} />
-                                            <br />
-                                            <span>Đã bán {item.sold} </span>
-                                        </div>
-                                    </div>
 
-                                </div>
-                            )
-                        })}
-                    </Row>
-                    <Divider />
-                    <Row style={{ display: "flex", justifyContent: "center" }}>
-                        <Pagination
-                            // defaultCurrent={6}
-                            current={current}
-                            total={total}
-                            pageSize={pageSize}
-                            responsive  // Giao diện mobile
-                            onChange={(p, s) => handleOnChangePage({ current: p, pageSize: s})}
-                        />
-                    </Row>
+                                    </div>
+                                )
+                            })}
+                        </Row>
+                            <Divider />
+                        <Row style={{ display: "flex", justifyContent: "center" }}>
+                            <Pagination
+                                // defaultCurrent={6}
+                                current={current}
+                                total={total}
+                                pageSize={pageSize}
+                                responsive  // Giao diện mobile
+                                onChange={(p, s) => handleOnChangePage({ current: p, pageSize: s})}
+                            />
+                        </Row>
+                        </div>
+                    </Spin>
+                    
                 </Col>
             </Row>
         </div>
