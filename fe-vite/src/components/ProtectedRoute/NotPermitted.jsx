@@ -8,7 +8,7 @@ const NotPermitted = () => {
             status="403"
             title="403"
             subTitle="Bạn không có quyền truy cập vào trang web này"
-            extra={<Button type="primary">Về trang chủ</Button>}
+            extra={<Button type="primary"><a href='/'>Về trang chủ</a></Button>}
         />
     )
 }

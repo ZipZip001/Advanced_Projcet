@@ -18,6 +18,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 import LayoutAdmin from './components/Admin/LayoutAdmin';
 import UserTable from './components/Admin/UserTable/UserTable';
+import BookPage from './pages/book';
 const Layout = () => {
   return (
     <div className='layout-app'>
@@ -54,12 +55,12 @@ export default function App() {
       children: [
         {index: true, element:<Home/>},
         {
-          path: "user",
+          path: "contact",
           element: <ContactPage />,
         },
         {
-          path: "books",
-          element: <ContactPage />,
+          path: "book/:slug",
+          element: <BookPage />,
         },
 
       ],
