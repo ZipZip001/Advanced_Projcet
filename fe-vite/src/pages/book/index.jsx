@@ -52,7 +52,7 @@ const BookPage = () => {
             
             setTimeout(() => {
                 setDataBook(raw);
-            }, 3000)
+            }, 1000)
         }
     }
 

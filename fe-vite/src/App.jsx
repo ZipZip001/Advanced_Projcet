@@ -16,9 +16,12 @@ import NotFound from './components/NotFound';
 import AdminPage from './pages/admin/index'
 import ProtectedRoute from './components/ProtectedRoute';
 
+import './styles/global.scss'
+
 import LayoutAdmin from './components/Admin/LayoutAdmin';
 import UserTable from './components/Admin/UserTable/UserTable';
 import BookPage from './pages/book';
+import ViewOrder from './pages/Order/ViewOrder';
 const Layout = () => {
   return (
     <div className='layout-app'>
@@ -61,6 +64,10 @@ export default function App() {
         {
           path: "book/:slug",
           element: <BookPage />,
+        },
+        {
+          path: "order",
+          element: <ViewOrder />,
         },
 
       ],
