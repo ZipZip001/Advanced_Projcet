@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import {VscSearchFuzzy} from 'react-icons/vsc'
 import {FiShoppingCart} from 'react-icons/fi'
-import {BsFillPhoneFill} from 'react-icons/bs'
+import {BiSolidBookBookmark} from 'react-icons/bi'
 
 import './header.scss';
 
@@ -101,7 +101,7 @@ const Header = () => {
                         }}>☰</div>
                         <div className='page-header__logo'>
                             <span className='logo'>
-                                <BsFillPhoneFill className='rotate icon-react' /> Bán điện thoại
+                                <BiSolidBookBookmark className='rotate icon-react' /> Bán điện thoại
                                 <VscSearchFuzzy className='icon-search' />
                             </span>
                             <input
