@@ -2,26 +2,35 @@ import React, { useEffect, useState } from 'react';
 import { Outlet } from "react-router-dom"; // Chia Layout
 
 import {createBrowserRouter, RouterProvider,} from "react-router-dom";
-import LoginPage from './pages/login';
-import ContactPage from './pages/contact/contact';
+import { useDispatch, useSelector } from 'react-redux';
+
+//Component
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
+import Loading from './pages/Loading';
+import NotFound from './pages/NotFound/NotFound';
+import LayoutAdmin from './components/Admin/LayoutAdmin';
+import UserTable from './components/Admin/UserTable/UserTable';
 import Home from './components/home/index';
-import RegisterPage from './pages/register';
+import ProtectedRoute from './pages/ProtectedRoute/RoleBaseRoute';
+
+//pages
+import LoginPage from './pages/Login';
+import ContactPage from './pages/contact/contact';
+import RegisterPage from './pages/Register';
+import AdminPage from './pages/Admin/index'
+import BookPage from './pages/Book';
+import ViewOrder from './pages/Order/ViewOrder';
+
 import { fetchAccount } from './services/api';
-import { useDispatch, useSelector } from 'react-redux';
+
 import { doGetAccountAction } from './redux/account/accountSlice';
-import Loading from './components/Loading';
-import NotFound from './components/NotFound';
-import AdminPage from './pages/admin/index'
-import ProtectedRoute from './components/ProtectedRoute';
+
 
 import './styles/global.scss'
 
-import LayoutAdmin from './components/Admin/LayoutAdmin';
-import UserTable from './components/Admin/UserTable/UserTable';
-import BookPage from './pages/book';
-import ViewOrder from './pages/Order/ViewOrder';
+
+
 const Layout = () => {
   return (
     <div className='layout-app'>
@@ -77,15 +86,12 @@ export default function App() {
     {
       path: "/admin",
       element:  
-      <ProtectedRoute>        
-        <LayoutAdmin/>
-      </ProtectedRoute>,
+        <ProtectedRoute>        
+          <LayoutAdmin/>
+        </ProtectedRoute>,
       errorElement: <NotFound />,
       children: [
-        {index: true, element:
-          <ProtectedRoute>    
-            <AdminPage />
-          </ProtectedRoute>
+        {index: true, element:<AdminPage />
         },
         {
           path: "user",

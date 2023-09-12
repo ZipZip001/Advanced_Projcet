@@ -1,6 +1,9 @@
+import HelloMain from '../../images/Hello_Main.png'
+import '../Admin/background.scss'
+
 const AdminPage = () => {
     return(
-        <>Admin page</>
+        <div className="background-image"></div>
     )
 }
 export default AdminPage;

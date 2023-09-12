@@ -6,8 +6,6 @@ import { useEffect, useState } from 'react';
 import { doDeleteItemCartAction, doUpdateCartAction } from '../../redux/order/orderSlice';
 
 
-
-
 const ViewOrder = (props) => {
     const carts =useSelector(state => state.order.carts)
 const dispatch = useDispatch()

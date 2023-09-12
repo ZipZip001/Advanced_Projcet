@@ -172,8 +172,8 @@ const Home = () => {
             <Row gutter={[20, 20]} >
                 <Col md={4} sm={0} xs={0} style={{paddingTop: '20px' }}>
                     {/* style={{ border: "1px solid green" }} */}
-                    <div style={{ display: 'flex', justifyContent: "space-between" }}>
-                        <span> <FilterTwoTone /> Bộ lọc tìm kiếm</span>
+                    <div style={{ display: 'flex', justifyContent: "space-between", }}>
+                        {/* <span> <FilterTwoTone /> Bộ lọc</span> */}
                         <ReloadOutlined title="Reset" onClick={() => form.resetFields()} />
                     </div>
                     <Form

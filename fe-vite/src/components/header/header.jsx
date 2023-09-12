@@ -101,7 +101,7 @@ const Header = () => {
                         }}>☰</div>
                         <div className='page-header__logo'>
                             <span className='logo'>
-                                <BiSolidBookBookmark className='rotate icon-react' /> Bán điện thoại
+                                <BiSolidBookBookmark className='rotate icon-react' /> Website bán sách
                                 <VscSearchFuzzy className='icon-search' />
                             </span>
                             <input
@@ -111,7 +111,7 @@ const Header = () => {
                         </div>
 
                     </div>
-                    <nav className="page-header__bottom">
+                    <nav className="page-header__bottom" style={{alignItems : "center"}}>
                         <ul id="navigation" className="navigation">
                             <li className="navigation__item">
                                 <Popover
