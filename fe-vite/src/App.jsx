@@ -20,7 +20,7 @@ import ContactPage from './pages/contact/contact';
 import RegisterPage from './pages/Register';
 import AdminPage from './pages/Admin/index'
 import BookPage from './pages/Book';
-import ViewOrder from './pages/Order/ViewOrder';
+import ViewOrder from './components/order/ViewOrder';
 
 import { fetchAccount } from './services/api';
 
@@ -28,6 +28,8 @@ import { doGetAccountAction } from './redux/account/accountSlice';
 
 
 import './styles/global.scss'
+import Payment from './components/order/Payment';
+import OrderPage from './pages/Order';
 
 
 
@@ -76,7 +78,15 @@ export default function App() {
         },
         {
           path: "order",
-          element: <ViewOrder />,
+          element:
+          <ProtectedRoute>
+            <OrderPage />
+          </ProtectedRoute>, 
+        },
+        {
+          path: "payment",
+          element: <Payment />,
+
         },
 
       ],
@@ -101,10 +111,6 @@ export default function App() {
         },
         {
           path: "books",
-          element: <ContactPage />,
-        },
-        {
-          path: "orders",
           element: <ContactPage />,
         },
       ],

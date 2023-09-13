@@ -3,7 +3,7 @@ import { Row, Col, Form, Checkbox, Divider, InputNumber, Button, Rate, Tabs, Pag
 import './home.scss';
 import { useEffect, useState } from 'react';
 import { callFetchCategory, callFetchListBook } from '../../services/api';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 const Home = () => {
     const [listCategory, setListCategory] = useState([]);
 

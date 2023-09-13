@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import {VscSearchFuzzy} from 'react-icons/vsc'
 import {FiShoppingCart} from 'react-icons/fi'
@@ -85,7 +85,9 @@ const Header = () => {
                     })}
                 </div>
                 <div >
-                    <button className="pop-cart-footer">Xem giỏ hàng</button>
+                    <Link to ="/order">
+                        <button className="pop-cart-footer">Xem giỏ hàng</button>
+                    </Link>
                 </div>
             </div>
         )
@@ -101,7 +103,9 @@ const Header = () => {
                         }}>☰</div>
                         <div className='page-header__logo'>
                             <span className='logo'>
-                                <BiSolidBookBookmark className='rotate icon-react' /> Website bán sách
+                                <Link to="/" style={{textDecoration: "none"}}>
+                                    <BiSolidBookBookmark className='rotate icon-react' /> Website bán sách
+                                </Link>
                                 <VscSearchFuzzy className='icon-search' />
                             </span>
                             <input

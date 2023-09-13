@@ -45,3 +45,9 @@ export const callFetchListBook = (query) => {
 export const callFetchListBookById = (id) => {
     return axios.get(`/api/v1/book/${id}`)
 }
+
+export const callPlaceOrder = (data) => {
+    return axios.post(`/api/v1/order`,{
+        ...data
+    })
+}
