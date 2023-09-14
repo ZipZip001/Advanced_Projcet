@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
-import { Button, Drawer, Radio, Space, Descriptions  } from 'antd';
+import { Button, Drawer, Radio, Space, Descriptions, Badge  } from 'antd';
 import moment from 'moment/moment';
 
-const UserViewDetai = () => {
+const UserViewDetail = (props) => {
   const [open, setOpen] = useState(false);
   const [placement, setPlacement] = useState('left');
+
+  // const [dataViewDetail, setDataViewDetail] = useState();
+  const {openViewDetail, dataViewDetail} = props;
+
   const showDrawer = () => {
     setOpen(true);
   };
@@ -15,49 +19,19 @@ const UserViewDetai = () => {
     setPlacement(e.target.value);
   };
 
-  const fetchUser = async (searchFilter) =>{
-    setIsLoading(true)
+  // const fetchUser = async (searchFilter) =>{
+  //   setIsLoading(true)
 
-    const res = await callFetchListUser(query);
-    if (res && res.data) {
-        setDataViewDetail(res.data.result)
-        console.log('dataViewDetail:', dataViewDetail);
-    }
-    setIsLoading(false);
-  }
+  //   const res = await callFetchListUser(query);
+  //   if (res && res.data) {
+  //       setDataViewDetail(res.data.result)
+  //       console.log('dataViewDetail:', dataViewDetail);
+  //   }
+  //   setIsLoading(false);
+  // }
 
 
-  const columns = [
-    {
-      title: 'Id',
-      dataIndex: '_id',
-      render: (text, record, index) => {
-        return(
-            <a href="#" onClick={() => {
-                setDataViewDetail(record);
-                setOpenViewDetail(true)
 
-            }}>{record._id}
-            </a>
-        )
-      }
-    },
-    {
-      title: 'Họ tên',
-      dataIndex: 'fullName',
-      sorter:  true ,
-    },
-    {
-      title: 'Email',
-      dataIndex: 'email',
-      sorter:  true ,
-    },
-    {
-      title: 'Số điện thoại',
-      dataIndex: 'phone',
-      sorter:  true ,
-    },
-];
   return (
     <>
       <Drawer
@@ -72,7 +46,7 @@ const UserViewDetai = () => {
           <Descriptions
                 title="Thông tin người dùng"
                 bordered
-                items={items}
+                column={2}
                 >
                 <Descriptions.Item label="Id"> {dataViewDetail?._id}</Descriptions.Item> 
                 <Descriptions.Item label="Họ tên"> {dataViewDetail?.fullName}</Descriptions.Item> 
@@ -93,4 +67,4 @@ const UserViewDetai = () => {
     </>
   );
 };
-export default UserViewDetai;
+export default UserViewDetail;

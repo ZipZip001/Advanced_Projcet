@@ -14,6 +14,7 @@ const BookTable = () => {
 
     const [refreshTable, setRefreshTable] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [sortQuery, setSortQuery] = useState("sort=-updateAt");
 
     // const [openModalCreate, setOpenModalCreate] = useState(false);
     // const [openModalUpdate, setOpenModalUpdate] = useState(false);
@@ -67,7 +68,7 @@ const BookTable = () => {
             sorter:  true ,
             render: (text, record) => {
                 return moment(record.updatedAt).format('DD/MM/YYYY');
-              },
+            },
         },
         {
             title: 'Giá tiền',
@@ -76,6 +77,7 @@ const BookTable = () => {
         },
         {
           title: 'Action',
+          width: 150,
           render: (text, record, index) => {
               return(
                   <>
@@ -86,12 +88,12 @@ const BookTable = () => {
                         onConfirm={() => handleDeleteBook(record._id)}
                         okText="Xác nhận"
                         cancelText="Hủy"
-                    
                     >
                         <DeleteTwoTone/>
                     </Popconfirm>
 
                     <EditTwoTone
+                        style={{marginLeft: "20px"}}
                         onClick={() => {
                             setOpenModalUpdate(true)
                             setDataUpdate(record);

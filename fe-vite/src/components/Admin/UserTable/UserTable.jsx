@@ -6,6 +6,7 @@ import InputSearch from './InputSearch';
 import { CloudUploadOutlined, DeleteTwoTone, EditTwoTone, ExportOutlined, PlusOutlined, ReloadOutlined } from '@ant-design/icons';
 import UserModalCreate from './UserModalCreate';
 import UserModalUpdate from './UserModalUpdate';
+import UserViewDetail from './UserViewDetail';
 
 
 const UserTable = () => {
@@ -17,9 +18,16 @@ const UserTable = () => {
     const [refreshTable, setRefreshTable] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
+    const [dataViewDetail, setDataViewDetail] = useState();
+
     const [openModalCreate, setOpenModalCreate] = useState(false);
     const [openModalUpdate, setOpenModalUpdate] = useState(false);
+    const [openViewDetail, setOpenViewDetail] = useState(false);
+
     const [dataUpdate, setDataUpdate] = useState(null);
+
+
+
 
 
 
@@ -42,11 +50,21 @@ const UserTable = () => {
         }
         setIsLoading(false);
     }
+    console.log(dataViewDetail)
 
     const columns = [
         {
           title: 'Id',
           dataIndex: '_id',
+          render:(text, record, index) =>{
+            return(
+                <a href="#" onClick={() =>{
+                    setDataViewDetail(record);
+                    setOpenViewDetail(true)
+                }}>{record._id}
+                </a>
+            )
+          }
         },
         {
           title: 'Họ tên',
@@ -81,6 +99,7 @@ const UserTable = () => {
                     </Popconfirm>
 
                     <EditTwoTone
+                        style={{marginLeft: "20px"}}
                         onClick={() => {
                             setOpenModalUpdate(true)
                             setDataUpdate(record);
@@ -162,13 +181,6 @@ const UserTable = () => {
                         icon={<ReloadOutlined/>}
                         >
                     </Button>
-                    {/* <Button type='ghost' onClick={() => {
-                        setFilter("");
-                        setSortQuery("");
-                    }}>
-                        <ReloadOutlined/>
-
-                    </Button> */}
                 </span>
             </div>
         )
@@ -204,6 +216,14 @@ const UserTable = () => {
                     // key={refreshTable} 
                 />
             </Col>       
+
+            <UserViewDetail
+                openViewDetail={openViewDetail}
+                setOpenViewDetail={setOpenViewDetail}
+                dataViewDetail={dataViewDetail}
+                setDataViewDetail={setDataViewDetail}
+            />
+
             <UserModalCreate
                 openModalCreate = {openModalCreate}
                 setOpenModalCreate ={setOpenModalCreate}
