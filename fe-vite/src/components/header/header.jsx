@@ -8,7 +8,7 @@ import {BiSolidBookBookmark} from 'react-icons/bi'
 
 import './header.scss';
 
-import {Badge, Divider, Drawer, Dropdown, Popover, Space, message } from 'antd';
+import {Avatar, Badge, Divider, Drawer, Dropdown, Popover, Space, message } from 'antd';
 import { DownOutlined } from "@ant-design/icons";
 import { callLogout } from "../../services/api";
 import { doLogoutAction } from "../../redux/account/accountSlice";
@@ -30,10 +30,18 @@ const Header = () => {
         }
     }
 
-    const items = [
+    let items = [
         {
             label: <label style={{ cursor: 'pointer' }}>Quản lý tài khoản</label>,
             key: 'account',
+        },
+        {
+            label: <label >
+                    <Link to="/history" style={{ cursor: 'pointer', textDecoration: 'none', color: 'black'}}>
+                        Lịch sử mua hàng
+                    </Link>
+                    </label>,
+            key: 'order',
         },
         {
             label: <label
@@ -42,30 +50,15 @@ const Header = () => {
             >Đăng xuất</label>,
             key: 'logout',
         },
-
     ];
+    if(user?.role === 'ADMIN'){
+        items.unshift({
+            label:<Link to='/admin'>Trang quản trị</Link>,
+            key: 'admin'
+        })
+    }
 
-    // const contentPopover = () =>{
-    //     return(
-    //         <div className="pop-cart-body">
-    //             <div className="pop-cart-content">
-    //                 <div className="book">
-    //                     <img src="" />
-    //                     <div>Đại việt sử ký</div>
-    //                     <div>109.040</div>
-    //                 </div>
-    //                 <div className="book">
-    //                     <img src="" />
-    //                     <div>Đại việt sử ký</div>
-    //                     <div>109.040</div>
-    //                 </div>
-    //             </div>
-    //             <div className="pop-cart-footer">
-    //                 <button>Xem giỏ hàng</button>
-    //             </div>
-    //         </div>
-    //     )
-    // };
+    const urlAvatar = `${import.meta.env.VITE_BACKEND_URL}/images/avatar/${user?.avatar}`;
 
     const contentPopover = () =>{
         return(
@@ -143,6 +136,7 @@ const Header = () => {
                                     :
                                     <Dropdown menu={{ items }} trigger={['click']}>
                                         <a onClick={(e) => e.preventDefault()}>
+                                            <Avatar src={urlAvatar}/>
                                             <Space>
                                                 Welcome {user?.fullName}
                                                 <DownOutlined />

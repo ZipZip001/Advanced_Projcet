@@ -24,7 +24,7 @@ const UserViewDetai = () => {
         console.log('dataViewDetail:', dataViewDetail);
     }
     setIsLoading(false);
-}
+  }
 
 
   const columns = [

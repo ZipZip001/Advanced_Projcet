@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Col, Popconfirm, Table, message, notification } from 'antd';
-import { callDeleteUser, callFetchListUser } from '../../../services/api';
+import {  callFetchListBook } from '../../../services/api';
 import InputSearch from './InputSearch';
 
 import { CloudUploadOutlined, DeleteTwoTone, EditTwoTone, ExportOutlined, PlusOutlined, ReloadOutlined } from '@ant-design/icons';
-import UserModalCreate from './UserModalCreate';
-import UserModalUpdate from './UserModalUpdate';
+import moment from 'moment';
 
-
-const UserTable = () => {
-    const [listUser, setListUser] = useState([]);
+const BookTable = () => {
+    const [listBook, setListBook] = useState([]);
     const [current, setCurrent] = useState(1);
     const [pageSize, setPageSize] = useState(5);
     const [total, setTotal] = useState(0);
@@ -17,27 +15,27 @@ const UserTable = () => {
     const [refreshTable, setRefreshTable] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
-    const [openModalCreate, setOpenModalCreate] = useState(false);
-    const [openModalUpdate, setOpenModalUpdate] = useState(false);
-    const [dataUpdate, setDataUpdate] = useState(null);
+    // const [openModalCreate, setOpenModalCreate] = useState(false);
+    // const [openModalUpdate, setOpenModalUpdate] = useState(false);
+    // const [dataUpdate, setDataUpdate] = useState(null);
 
 
 
     useEffect(() =>{
-        fetchUser();
+        fetchBook();
     },[current, pageSize, refreshTable]);
 
    
-    const fetchUser = async (searchFilter) =>{
+    const fetchBook = async (searchFilter) =>{
         setIsLoading(true)
         let query = `current=${current}&pageSize=${pageSize}`;
         if(searchFilter){
             query +=`&${searchFilter}`
         }
 
-        const res = await callFetchListUser(query);
+        const res = await callFetchListBook(query);
         if (res && res.data) {
-            setListUser(res.data.result);
+            setListBook(res.data.result);
             setTotal(res.data.meta.total);
         }
         setIsLoading(false);
@@ -49,19 +47,32 @@ const UserTable = () => {
           dataIndex: '_id',
         },
         {
-          title: 'Họ tên',
-          dataIndex: 'fullName',
+          title: 'Tên sách',
+          dataIndex: 'mainText',
           sorter:  true ,
         },
         {
-          title: 'Email',
-          dataIndex: 'email',
+          title: 'Tác giả',
+          dataIndex: 'author',
           sorter:  true ,
         },
         {
-          title: 'Số điện thoại',
-          dataIndex: 'phone',
+          title: 'Thể lọai',
+          dataIndex: 'category',
           sorter:  true ,
+        },
+        {
+            title: 'Ngày cập nhật',
+            dataIndex: 'updatedAt',
+            sorter:  true ,
+            render: (text, record) => {
+                return moment(record.updatedAt).format('DD/MM/YYYY');
+              },
+        },
+        {
+            title: 'Giá tiền',
+            dataIndex: 'price',
+            sorter:  true ,
         },
         {
           title: 'Action',
@@ -72,7 +83,7 @@ const UserTable = () => {
                         placement="leftTop"
                         title={"Xác nhận xóa user"}
                         description={"Bạn có chắc chắn muốn xóa user này ?"}
-                        onConfirm={() => handleDeleteUser(record._id)}
+                        onConfirm={() => handleDeleteBook(record._id)}
                         okText="Xác nhận"
                         cancelText="Hủy"
                     
@@ -105,11 +116,11 @@ const UserTable = () => {
         console.log('params', pagination, filters, sorter, extra);
     };
 
-    const handleDeleteUser = async (userId) =>{
+    const handleDeleteBook = async (userId) =>{
         const res = await callDeleteUser(userId);
         if (res && res.data){
-            message.success('Xóa user thành công');
-            fetchUser();
+            message.success('Xóa sách thành công');
+            fetchBook();
         }else{
             notification.error({
                 message: 'Có lỗi xảy ra',
@@ -123,12 +134,12 @@ const UserTable = () => {
         setRefreshTable(!refreshTable); 
     }
     const handleSearch = (query) =>{
-        fetchUser(query);  
+        fetchBook(query);  
     }
 
     // const handleExportData = () =>{
-    //     if(listUser.length > 0){
-    //         const worksheet = XLSX.utils.json_to_tosheet(listUser)
+    //     if(listBook.length > 0){
+    //         const worksheet = XLSX.utils.json_to_tosheet(listBook)
     //         const workbook = XLSX.utils.book_new();
     //         XLSX.utils.book_append_sheet(workbook,worksheet, "Sheet1");
     //         XLSX.writeFile(workbook, "ExportUser.csv");
@@ -138,7 +149,7 @@ const UserTable = () => {
     const renderHeader = () => {
         return(
             <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                <span>Bảng người dùng</span>
+                <span>Bảng sách</span>
                 <span style={{ display: 'flex', gap: 15}}>
                     <Button
                         icon={<ExportOutlined/>}
@@ -162,13 +173,6 @@ const UserTable = () => {
                         icon={<ReloadOutlined/>}
                         >
                     </Button>
-                    {/* <Button type='ghost' onClick={() => {
-                        setFilter("");
-                        setSortQuery("");
-                    }}>
-                        <ReloadOutlined/>
-
-                    </Button> */}
                 </span>
             </div>
         )
@@ -186,9 +190,8 @@ const UserTable = () => {
                 <Table 
                     title ={renderHeader}
 
-
                     columns={columns} 
-                    dataSource={listUser} 
+                    dataSource={listBook} 
                     loading = {isLoading}
                     onChange={onChange} 
                     rowKey="_id"
@@ -204,22 +207,21 @@ const UserTable = () => {
                     // key={refreshTable} 
                 />
             </Col>       
-            <UserModalCreate
+            {/* <UserModalCreate
                 openModalCreate = {openModalCreate}
                 setOpenModalCreate ={setOpenModalCreate}
-                fetchUser={fetchUser}
+                fetchBook={fetchBook}
             />
 
             <UserModalUpdate
                 openModalUpdate = {openModalUpdate}
                 setOpenModalUpdate ={setOpenModalUpdate}
                 dataUpdate={dataUpdate}
-                fetchUser={fetchUser}
-            />
-
+                fetchBook={fetchBook}
+            /> */}
         </>
     )
 }
 
 
-export default UserTable;
+export default BookTable;

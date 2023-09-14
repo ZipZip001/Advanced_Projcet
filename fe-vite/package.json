@@ -20,6 +20,7 @@
     "react-highlight-words": "^0.20.0",
     "react-icons": "^4.10.1",
     "react-image-gallery": "1.2.11",
+    "react-json-view": "^1.21.3",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.15.0",
     "react-spinners": "0.13.8",

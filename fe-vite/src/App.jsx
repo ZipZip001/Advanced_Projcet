@@ -28,8 +28,10 @@ import { doGetAccountAction } from './redux/account/accountSlice';
 
 
 import './styles/global.scss'
-import Payment from './components/order/Payment';
+// import Payment from './components/order/Payment';
 import OrderPage from './pages/Order';
+import HistoryPage from './pages/History';
+import BookTable from './components/Admin/BookTable/BookTable';
 
 
 
@@ -84,11 +86,10 @@ export default function App() {
           </ProtectedRoute>, 
         },
         {
-          path: "payment",
-          element: <Payment />,
+          path: "history",
+          element: <HistoryPage/>,
 
         },
-
       ],
     },
 
@@ -110,8 +111,8 @@ export default function App() {
             <UserTable />,
         },
         {
-          path: "books",
-          element: <ContactPage />,
+          path: "book",
+          element: <BookTable />,
         },
       ],
     },

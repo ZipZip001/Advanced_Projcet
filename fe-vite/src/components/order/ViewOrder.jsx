@@ -12,13 +12,12 @@ import { callPlaceOrder } from '../../services/api';
 
 const ViewOrder = (props) => {
     const carts =useSelector(state => state.order.carts)
+    const user =useSelector(state => state.account.user)
     const dispatch = useDispatch()
     const [totalPrice ,setTotalPrice] = useState(0)
 
     const [form] = Form.useForm();
     const [isSubmit, setIsSubmit] = useState(false);
-
-
 
 
     useEffect(() => {
@@ -47,9 +46,10 @@ const ViewOrder = (props) => {
             return{
                 bookName: item.detail.mainText,
                 quantity: item.quantity,
-                _id: item._id
+                _id: item._id,
             }
         })
+
         const data = {
             name: values.name,
             address: values.address,
@@ -57,12 +57,14 @@ const ViewOrder = (props) => {
             totalPrice: totalPrice,
             detail: detailOrder
         }
+        
     
         const res = await callPlaceOrder(data);
         if(res && res.data){
             message.success('Đặt hàng thành công !');
             dispatch(doPlaceOrderAction());
             props.setCurrentStep(2)
+            console.log(data);
         }else{
             notification.error({
                 message: "Đã có lỗi xảy ra",
@@ -70,6 +72,7 @@ const ViewOrder = (props) => {
             })
         }
         setIsSubmit(false);
+        
     }
 
     return (
@@ -145,7 +148,7 @@ const ViewOrder = (props) => {
                                 labelCol={{span: 24}}
                                 label="Tên người nhận"
                                 name="name"
-                                initialValue={UserOutlined.fullName}
+                                initialValue={user?.fullName}
                                 rules={[{required: true, message: "Tên người nhận" }]}
                             >
                                 <Input/>
@@ -155,7 +158,7 @@ const ViewOrder = (props) => {
                                 labelCol={{span: 24}}
                                 label="Số điện thoại"
                                 name="phone"
-                                initialValue={UserOutlined.fullName}
+                                initialValue={user?.phone}
                                 rules={[{required: true, message: "Số điện thoại" }]}
                             >
                                 <Input/>
@@ -165,7 +168,7 @@ const ViewOrder = (props) => {
                                 labelCol={{span: 24}}
                                 label="Địa chỉ"
                                 name="address"
-                                initialValue={UserOutlined.fullName}
+                                initialValue={user?.address}
                                 rules={[{required: true, message: "Địa chỉ" }]}
                             >
                                 <TextArea

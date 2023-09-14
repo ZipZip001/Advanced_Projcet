@@ -1,28 +1,46 @@
-import { Button, Col, Form, Input, Row, theme } from "antd";
+import { Button, Col, Form, Input, Row, Select, theme } from "antd";
 
 import React from "react";
+import { useEffect } from "react";
+import { callFetchCategory } from "../../../services/api";
+import { useState } from "react";
 
 
 const InputSearch = (props) => {
     const {token} = theme.useToken();
     const [form] = Form.useForm();
+    const [listCategory, setListCategory] = useState([]);
 
 
     const onFinish = (values) => {
         let query = "";
-        if(values.fullName){
-            query += `&fullName=/${values.fullName}/i`
+        if(values.mainText){
+            query += `&mainText=/${values.mainText}/i`
         }
-        if(values.email){
-            query += `&email=/${values.email}/i`
+        if(values.author){
+            query += `&author=/${values.author}/i`
         }
-        if(values.phone){
-            query += `&phone=/${values.phone}/i`
+        if(values.category){
+            query += `&category=/${values.category}/i`
         }
+
         if(query){
             props.handleSearch(query);
         }
     }
+
+    useEffect(() => {
+        const initCategory = async () => {
+            const res = await callFetchCategory();
+            if(res && res.data){
+                const d = res.data.map(item =>{
+                    return {label: item, value: item}
+                })
+                setListCategory(d);
+            }
+        }
+        initCategory()
+    }, [])
 
     const handleSearchClick = () => {
         form.validateFields().then((values) => {
@@ -41,8 +59,8 @@ const InputSearch = (props) => {
                 <Col span={8}>
                     <Form.Item 
                     labelCol={{span: 24}}
-                    name={`fullName`}
-                    label={`Name`}>
+                    name={`mainText`}
+                    label={`Tên sách`}>
                         <Input/>
                     </Form.Item>
                 </Col>
@@ -50,17 +68,23 @@ const InputSearch = (props) => {
                 <Col span={8}>
                     <Form.Item 
                     labelCol={{span: 24}}
-                    name={`email`}
-                    label={`Email`}>
-                        <Input/>
+                    name={`category`}
+                    label={`Thể loại`}>
+                    <Select>
+                        {listCategory?.map((item) => (
+                            <Select.Option key={item.value} value={item.value}>
+                                {item.label}
+                            </Select.Option>
+                        ))}
+                    </Select>
                     </Form.Item>
                 </Col>
 
                 <Col span={8}>
                     <Form.Item 
                     labelCol={{span: 24}}
-                    name={`phone`}
-                    label={`Số điện thoại`}>
+                    name={`author`}
+                    label={`Tác giả`}>
                         <Input/>
                     </Form.Item>
                 </Col>

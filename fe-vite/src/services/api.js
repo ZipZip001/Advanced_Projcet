@@ -33,7 +33,8 @@ export const callDeleteUser = ( _id) => {
     return axios.delete(`/api/v1/user/${_id}`)
 }
 
-//Book OudSide
+
+//Book 
 export const callFetchCategory = () => {
     return axios.get(`/api/v1/database/category`)
 }
@@ -50,4 +51,8 @@ export const callPlaceOrder = (data) => {
     return axios.post(`/api/v1/order`,{
         ...data
     })
+}
+
+export const callHistory = () => {
+    return axios.get(`/api/v1/history`)
 }

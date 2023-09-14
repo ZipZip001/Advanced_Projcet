@@ -197,7 +197,6 @@ const Home = () => {
                                             </Col>
                                         )
                                     })}
-
                                 </Row>
                             </Checkbox.Group>
                         </Form.Item>
