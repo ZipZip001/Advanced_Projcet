@@ -5,7 +5,7 @@ import {createBrowserRouter, RouterProvider,} from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 
 //Component
-import Header from './components/header/header';
+import Header from './components/Header/header';
 import Footer from './components/footer/footer';
 import Loading from './pages/Loading';
 import NotFound from './pages/NotFound/NotFound';
@@ -32,6 +32,7 @@ import './styles/global.scss'
 import OrderPage from './pages/Order';
 import HistoryPage from './pages/History';
 import BookTable from './components/Admin/BookTable/BookTable';
+
 
 
 
@@ -90,6 +91,7 @@ export default function App() {
           element: <HistoryPage/>,
 
         },
+
       ],
     },
 

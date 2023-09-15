@@ -12,6 +12,7 @@ import {Avatar, Badge, Divider, Drawer, Dropdown, Popover, Space, message } from
 import { DownOutlined } from "@ant-design/icons";
 import { callLogout } from "../../services/api";
 import { doLogoutAction } from "../../redux/account/accountSlice";
+import ManagerAccount from "../A/ManagerAccount";
 
 const Header = () => {
     const [openDrawer, setOpenDrawer] = useState(false);
@@ -20,6 +21,14 @@ const Header = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch()
     const carts = useSelector(state => state.order.carts)
+
+    // const [openManager, setOpenManager] = useState(false)
+
+    const [isManagerAccountOpen, setIsManagerAccountOpen] = useState(false);
+
+    const openManagerAccountModal = () => {
+        setIsManagerAccountOpen(true);
+    };
 
     const handleLogout = async () => {
         const res = await callLogout();
@@ -32,7 +41,9 @@ const Header = () => {
 
     let items = [
         {
-            label: <label style={{ cursor: 'pointer' }}>Quản lý tài khoản</label>,
+            label: <label style={{ cursor: 'pointer' }} onClick={openManagerAccountModal}>
+                Quản lý tài khoản
+                </label>,
             key: 'account',
         },
         {
@@ -161,6 +172,10 @@ const Header = () => {
                 <p>Đăng xuất</p>
                 <Divider />
             </Drawer> */}
+            <ManagerAccount
+                isModalOpen={isManagerAccountOpen}
+                setIsModalOpen={setIsManagerAccountOpen}
+            />
         </>
     )
 }

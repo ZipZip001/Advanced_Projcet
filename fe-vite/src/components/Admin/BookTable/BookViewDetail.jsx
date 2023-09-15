@@ -1,6 +1,6 @@
 import { Badge, Descriptions, Divider, Drawer, Modal, Upload } from "antd";
 import moment from 'moment';
-import { FORMAT_DATE_DISPLAY } from "../../../utils/constant";
+// import { FORMAT_DATE_DISPLAY } from "../../../utils/constant";
 //FORMAT_DATE_DISPLAY = 'DD-MM-YYYY HH:mm:ss'
 import { useState } from "react";
 
@@ -91,10 +91,10 @@ const BookViewDetail = (props) => {
                     </Descriptions.Item>
 
                     <Descriptions.Item label="Created At">
-                        {moment(dataViewDetail?.createdAt).format(FORMAT_DATE_DISPLAY)}
+                        {moment(dataViewDetail?.createdAt).format('DD-MM-YYYY HH:mm:ss')}
                     </Descriptions.Item>
                     <Descriptions.Item label="Updated At">
-                        {moment(dataViewDetail?.updatedAt).format(FORMAT_DATE_DISPLAY)}
+                        {moment(dataViewDetail?.updatedAt).format('DD-MM-YYYY HH:mm:ss')}
                     </Descriptions.Item>
                 </Descriptions>
                 <Divider orientation="left" > Ảnh Books </Divider>

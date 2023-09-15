@@ -5,15 +5,18 @@ import InputSearch from './InputSearch';
 
 import { CloudUploadOutlined, DeleteTwoTone, EditTwoTone, ExportOutlined, PlusOutlined, ReloadOutlined } from '@ant-design/icons';
 import moment from 'moment';
+import BookViewDetail from './BookViewDetail';
 
 const BookTable = () => {
     const [listBook, setListBook] = useState([]);
     const [current, setCurrent] = useState(1);
     const [pageSize, setPageSize] = useState(5);
     const [total, setTotal] = useState(0);
+    const [dataViewDetail, setDataViewDetail] = useState();
 
     const [refreshTable, setRefreshTable] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [openViewDetail, setOpenViewDetail] = useState(false);
     const [sortQuery, setSortQuery] = useState("sort=-updateAt");
 
     // const [openModalCreate, setOpenModalCreate] = useState(false);
@@ -46,6 +49,15 @@ const BookTable = () => {
         {
           title: 'Id',
           dataIndex: '_id',
+          render:(text, record, index) =>{
+            return(
+                <a href="#" onClick={() =>{
+                    setDataViewDetail(record);
+                    setOpenViewDetail(true)
+                }}>{record._id}
+                </a>
+            )
+          }
         },
         {
           title: 'Tên sách',
@@ -208,12 +220,23 @@ const BookTable = () => {
                     }
                     // key={refreshTable} 
                 />
-            </Col>       
+            </Col>   
+
+            <BookViewDetail
+                openViewDetail={openViewDetail}
+                setOpenViewDetail={setOpenViewDetail}
+                dataViewDetail={dataViewDetail}
+                setDataViewDetail={setDataViewDetail}
+            />
+
+
+
             {/* <UserModalCreate
                 openModalCreate = {openModalCreate}
                 setOpenModalCreate ={setOpenModalCreate}
                 fetchBook={fetchBook}
             />
+            
 
             <UserModalUpdate
                 openModalUpdate = {openModalUpdate}

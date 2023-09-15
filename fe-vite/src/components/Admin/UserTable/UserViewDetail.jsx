@@ -19,19 +19,6 @@ const UserViewDetail = (props) => {
     setPlacement(e.target.value);
   };
 
-  // const fetchUser = async (searchFilter) =>{
-  //   setIsLoading(true)
-
-  //   const res = await callFetchListUser(query);
-  //   if (res && res.data) {
-  //       setDataViewDetail(res.data.result)
-  //       console.log('dataViewDetail:', dataViewDetail);
-  //   }
-  //   setIsLoading(false);
-  // }
-
-
-
   return (
     <>
       <Drawer
