@@ -1,0 +1,26 @@
+Nghiên cứu API 
+
+"data": {
+        "meta": {
+            "current": "4",
+            "pageSize": "2",
+            "pages": 5,
+            "total": 10
+        },
+        "result": [
+            {
+                "id": "64e718a67b3636a02c2fa5c8",
+                "thumbnail": "11-dc801dd2a968c1a43ec9270728555fbe.jpg",
+                "slider": [],
+                "mainText": "Tự Học Nhạc Lý Cơ Bản",
+                "author": "TS. Phạm Phương Hoa, Trương Ngọc Bích, Cù Minh Nhật",
+                "price": 60000,
+                "sold": 32,
+                "quantity": 997,
+                "category": "Music",
+                "createdAt": "2023-08-24T08:45:16.623Z",
+                "updatedAt": "2023-09-13T08:29:22.288Z",
+            },
+
+
+-> api gọi danh mục là danh mục 4 với kích thước trang là 2
