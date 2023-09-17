@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Outlet } from "react-router-dom"; // Chia Layout
+import { Outlet } from "react-router-dom"; 
 
 import {createBrowserRouter, RouterProvider,} from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
@@ -37,10 +37,12 @@ import BookTable from './components/Admin/BookTable/BookTable';
 
 
 const Layout = () => {
+  const [searchTerm, setSearchTerm] = useState('')
+
   return (
     <div className='layout-app'>
-      <Header/>
-        <Outlet/>
+      <Header searchTerm = {searchTerm}  setSearchTerm = {setSearchTerm}/>
+        <Outlet context={[searchTerm, setSearchTerm]}/>
       <Footer/>
     </div>
   )

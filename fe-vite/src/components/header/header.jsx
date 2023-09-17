@@ -14,7 +14,10 @@ import { callLogout } from "../../services/api";
 import { doLogoutAction } from "../../redux/account/accountSlice";
 import ManagerAccount from "../A/ManagerAccount";
 
-const Header = () => {
+const Header = ({searchTerm, setSearchTerm}) => {
+
+    // const [searchTerm, setSearchTerm] = useState("")
+
     const [openDrawer, setOpenDrawer] = useState(false);
     const isAuthenticated = useSelector(state => state.account.isAuthenticated);
     const user = useSelector(state => state.account.user);
@@ -28,6 +31,10 @@ const Header = () => {
 
     const openManagerAccountModal = () => {
         setIsManagerAccountOpen(true);
+    };
+
+    const handleSearch = (e) => {
+        setSearchTerm(e.target.value);
     };
 
     const handleLogout = async () => {
@@ -115,6 +122,9 @@ const Header = () => {
                             <input
                                 className="input-search" type={'text'}
                                 placeholder="Bạn tìm gì hôm nay"
+                                value={searchTerm}
+                                onChange={handleSearch}
+                                
                             />
                         </div>
 

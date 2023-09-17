@@ -28,9 +28,6 @@ const UserTable = () => {
 
 
 
-
-
-
     useEffect(() =>{
         fetchUser();
     },[current, pageSize, refreshTable]);

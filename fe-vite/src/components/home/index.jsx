@@ -3,8 +3,11 @@ import { Row, Col, Form, Checkbox, Divider, InputNumber, Button, Rate, Tabs, Pag
 import './home.scss';
 import { useEffect, useState } from 'react';
 import { callFetchCategory, callFetchListBook } from '../../services/api';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useOutletContext } from 'react-router-dom';
+import Header from '../Header/header';
 const Home = () => {
+    const [searchTerm, setSearchTerm] = useOutletContext()
+
     const [listCategory, setListCategory] = useState([]);
 
     const [listBook, setListBook] = useState([]);
@@ -60,7 +63,7 @@ const Home = () => {
 
     useEffect (() =>{
         fetchBook();
-    },[current, pageSize, filter, sortQuery])
+    },[current, pageSize, filter, sortQuery, searchTerm])
 
     const fetchBook = async () => {
         setIsLoading(true)
@@ -70,6 +73,9 @@ const Home = () => {
         }
         if(sortQuery){
             query +=`&${sortQuery}`
+        }
+        if(searchTerm){
+            query += `&mainText=/${searchTerm}/i`;
         }
 
         const res = await callFetchListBook(query);
@@ -174,7 +180,11 @@ const Home = () => {
                     {/* style={{ border: "1px solid green" }} */}
                     <div style={{ display: 'flex', justifyContent: "space-between", }}>
                         {/* <span> <FilterTwoTone /> Bộ lọc</span> */}
-                        <ReloadOutlined title="Reset" onClick={() => form.resetFields()} />
+                        <ReloadOutlined title="Reset" onClick={() => {
+                            form.resetFields();
+                            setFilter('');
+                            setSearchTerm('');
+                            }} />
                     </div>
                     <Form
                         onFinish={onFinish}
