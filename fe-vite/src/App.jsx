@@ -32,6 +32,7 @@ import './styles/global.scss'
 import OrderPage from './pages/Order';
 import HistoryPage from './pages/History';
 import BookTable from './components/Admin/BookTable/BookTable';
+import OutSideBook from './components/Book/OutSideBook';
 
 
 
@@ -91,8 +92,12 @@ export default function App() {
         {
           path: "history",
           element: <HistoryPage/>,
-
         },
+        {
+          path: "outcheck",
+          element: <OutSideBook/>,
+        },
+        
 
       ],
     },
@@ -139,6 +144,8 @@ export default function App() {
         || window.location.pathname === '/login' 
         || window.location.pathname === '/' 
         || window.location.pathname === '/register' 
+        || window.location.pathname === '/outcheck' 
+
         ?
         <RouterProvider router={router} /> 
         :
