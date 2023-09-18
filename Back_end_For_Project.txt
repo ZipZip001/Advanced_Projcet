@@ -24,3 +24,6 @@ Nghiên cứu API
 
 
 -> api gọi danh mục là danh mục 4 với kích thước trang là 2
+
+
+http://localhost:8080/api/v1/book?current=1&pageSize=2

@@ -1,7 +1,7 @@
 CREATE TABLE book (
     id INT AUTO_INCREMENT PRIMARY KEY,
 
-	thumnail TEXT,
+	thumnail VARCHAR(255),
     slide TEXT,
     maintext VARCHAR(255),
     category VARCHAR(255),
