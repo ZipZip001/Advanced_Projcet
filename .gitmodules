@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 [submodule "back_end"]
 	path = back_end
 	url = https://github.com/ZipZip001/litte_Project.git
+=======
+[submodule "littl_Project"]
+	path = littl_Project
+	url = https://github.com/ZipZip001/Advanced_Projcet.git
+>>>>>>> dc5e410ae8b457fb41f806368801a1a379000b2b
