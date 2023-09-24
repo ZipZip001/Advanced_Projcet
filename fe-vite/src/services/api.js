@@ -86,6 +86,10 @@ export const callUpdatePassword = (email, oldpass, newpass) =>{
 
 
 // api outside for books
-export const callListBookOut = () => {
-    return axios.get(`/api/books`)
+export const callListBookOut = (query) => {
+    return axios.get(`/api/book?${query}`)
+}
+
+export const callCategoryOut = () => {
+    return axios.get(`/api/category`)
 }

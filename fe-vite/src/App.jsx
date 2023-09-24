@@ -105,10 +105,10 @@ export default function App() {
     
     {
       path: "/admin",
-      element:  
-        <ProtectedRoute>        
-          <LayoutAdmin/>
-        </ProtectedRoute>,
+      element:            <LayoutAdmin/>,
+        // <ProtectedRoute>        
+        //   <LayoutAdmin/>
+        // </ProtectedRoute>,
       errorElement: <NotFound />,
       children: [
         {index: true, element:<AdminPage />
@@ -144,7 +144,8 @@ export default function App() {
         || window.location.pathname === '/login' 
         || window.location.pathname === '/' 
         || window.location.pathname === '/register' 
-        || window.location.pathname === '/outcheck' 
+        || window.location.pathname === '/outcheck'
+        || window.location.pathname === '/admin'  
 
         ?
         <RouterProvider router={router} /> 

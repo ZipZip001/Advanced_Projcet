@@ -2,7 +2,7 @@ import { FilterTwoTone, ReloadOutlined } from '@ant-design/icons';
 import { Row, Col, Form, Checkbox, Divider, InputNumber, Button, Rate, Tabs, Pagination, Spin } from 'antd';
 import './home.scss';
 import { useEffect, useState } from 'react';
-import { callFetchCategory, callFetchListBook } from '../../services/api';
+import { callCategoryOut, callListBookOut } from '../../services/api';
 import { Link, useNavigate, useOutletContext } from 'react-router-dom';
 import Header from '../Header/header';
 const Home = () => {
@@ -43,14 +43,14 @@ const Home = () => {
             setCurrent(pagination.current);
         }
         if (pagination && pagination.pageSize != pageSize){
-            setCurrent(pagination.pageSize);
+            setPageSize(pagination.pageSize);
             setCurrent(1);
         }
     }
 
     useEffect(() => {
         const initCategory = async () => {
-            const res = await callFetchCategory();
+            const res = await callCategoryOut();
             if(res && res.data){
                 const d = res.data.map(item =>{
                     return {label: item, value: item}
@@ -75,13 +75,13 @@ const Home = () => {
             query +=`&${sortQuery}`
         }
         if(searchTerm){
-            query += `&mainText=/${searchTerm}/i`;
+            query += `&maintext=/${searchTerm}/i`;
         }
 
-        const res = await callFetchListBook(query);
-        if (res && res.data) {
-            setListBook(res.data.result);
-            setTotal(res.data.meta.total);
+        const res = await callListBookOut(query);
+        if (res && res.data ) { 
+            setListBook(res.data.result);  
+            setTotal(res.data.meta.total); 
         }
         setIsLoading(false);
     }
@@ -147,7 +147,7 @@ const Home = () => {
     }
 
     const handleRedirectBook =(book) =>{
-        const slug = convertSlug(book.mainText);
+        const slug = convertSlug(book.maintext);
         navigate(`/book/${slug}?id=${book._id}`)
     }
 
@@ -289,10 +289,10 @@ const Home = () => {
                                     onClick={() => handleRedirectBook(item)}>
                                         <div className='wrapper'>
                                             <div className="thumbnail">
-                                            <img src={`${import.meta.env.VITE_BACKEND_URL}/images/book/${item.thumbnail}`} alt="thumbnail book" />
-    
+                                            {/* <img src={`${import.meta.env.VITE_BACKEND_URL}/images/book/${item.thumbnail}`} alt="thumbnail book" /> */}
+                                            <img src={item.thumnail} alt="" />
                                             </div>
-                                            <div className="text" title={item.mainText}>{item.mainText}</div>
+                                            <div className="text" title={item.maintext}>{item.maintext}</div>
                                             <div className="price">
                                                 {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(item.price)}
                                             </div>
