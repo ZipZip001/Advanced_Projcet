@@ -2,7 +2,7 @@ import { Button, Col, Form, Input, Row, Select, theme } from "antd";
 
 import React from "react";
 import { useEffect } from "react";
-import { callFetchCategory } from "../../../services/api";
+import { callCategoryOut } from "../../../services/api";
 import { useState } from "react";
 
 
@@ -31,7 +31,7 @@ const InputSearch = (props) => {
 
     useEffect(() => {
         const initCategory = async () => {
-            const res = await callFetchCategory();
+            const res = await callCategoryOut();
             if(res && res.data){
                 const d = res.data.map(item =>{
                     return {label: item, value: item}

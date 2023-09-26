@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Col, Popconfirm, Table, message, notification } from 'antd';
-import {  callFetchListBook } from '../../../services/api';
+import {  callListBookOut } from '../../../services/api';
 import InputSearch from './InputSearch';
 
 import { CloudUploadOutlined, DeleteTwoTone, EditTwoTone, ExportOutlined, PlusOutlined, ReloadOutlined } from '@ant-design/icons';
@@ -37,7 +37,7 @@ const BookTable = () => {
             query +=`&${searchFilter}`
         }
 
-        const res = await callFetchListBook(query);
+        const res = await callListBookOut(query);
         if (res && res.data) {
             setListBook(res.data.result);
             setTotal(res.data.meta.total);
