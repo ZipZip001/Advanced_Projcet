@@ -14,6 +14,7 @@ CREATE TABLE book (
 
 INSERT INTO book (thumnail, slide, maintext, author, price, sold, quantity, create_at, update_at,category)
 VALUES
+
     ("https://salt.tikicdn.com/cache/368x368/ts/product/15/11/f8/56b303e000cb42faada663569fc5d7c9.jpg.webp", '["https://media.post.rvohealth.io/wp-content/uploads/2020/08/full-moon-night-landscape-732x549-thumbnail-1-732x549.jpg, "https://media.post.rvohealth.io/wp-content/uploads/2020/08/full-moon-night-landscape-732x549-thumbnail-1-732x549.jpg]', 'Sách Thay Đổi Cuộc Sống Với Nhân Số Học', 'Lê Đỗ Quỳnh Hương', 173600, 500, 1000, '2023-09-15', '2023-09-15','Self-help'),
     ("https://salt.tikicdn.com/cache/750x750/ts/product/ea/80/aa/76487dc3664207976a100b4b1b932cd6.jpg.webp", '["https://media.post.rvohealth.io/wp-content/uploads/2020/08/full-moon-night-landscape-732x549-thumbnail-1-732x549.jpg, "https://media.post.rvohealth.io/wp-content/uploads/2020/08/full-moon-night-landscape-732x549-thumbnail-1-732x549.jpg]', 'Sách Sức Mạnh Tiềm Thức (Tái Bản)', 'Joseph Murphyc', 95100, 500, 1000, '2023-09-15', '2023-09-15','Orther'),
 	("https://salt.tikicdn.com/cache/750x750/ts/product/80/14/8b/61fb657f347d14d9d7bf6fe901001a8e.jpg.webp", '["https://media.post.rvohealth.io/wp-content/uploads/2020/08/full-moon-night-landscape-732x549-thumbnail-1-732x549.jpg, "https://media.post.rvohealth.io/wp-content/uploads/2020/08/full-moon-night-landscape-732x549-thumbnail-1-732x549.jpg]', 'Sách Đi Tìm Lẽ Sống (Tái Bản )', 'Viktor Emil Frankl', 87000, 500, 1000, '2023-09-15', '2023-09-15','Self-help'),
@@ -29,6 +30,7 @@ VALUES
 	("https://salt.tikicdn.com/cache/750x750/ts/product/15/d4/d5/70ad904b07a46853d61af141185078f5.jpg.webp", '["https://media.post.rvohealth.io/wp-content/uploads/2020/08/full-moon-night-landscape-732x549-thumbnail-1-732x549.jpg, "https://media.post.rvohealth.io/wp-content/uploads/2020/08/full-moon-night-landscape-732x549-thumbnail-1-732x549.jpg]', 'Khoa Học Về Nấu Ăn - The Science Of Cooking', 'Stuart Farrimond', 312500, 500, 1000, '2023-09-15', '2023-09-15','Cookbooks'),
     ("https://salt.tikicdn.com/cache/750x750/ts/product/08/cf/a0/16e5e6d8aee89cd8d17ee0dff004cc42.jpg.webp", '["https://media.post.rvohealth.io/wp-content/uploads/2020/08/full-moon-night-landscape-732x549-thumbnail-1-732x549.jpg, "https://media.post.rvohealth.io/wp-content/uploads/2020/08/full-moon-night-landscape-732x549-thumbnail-1-732x549.jpg]', 'The Mystery of Three Quarters - Bí Ẩn Ba Phần Tư', 'Sophie Hannah', 162000, 500, 1000, '2023-09-15', '2023-09-15','Mystery'),
     ("https://salt.tikicdn.com/cache/368x368/ts/product/02/68/94/8ac980202b4d1fd0db204098e8bc68ae.jpg.webp", '["https://media.post.rvohealth.io/wp-content/uploads/2020/08/full-moon-night-landscape-732x549-thumbnail-1-732x549.jpg, "https://media.post.rvohealth.io/wp-content/uploads/2020/08/full-moon-night-landscape-732x549-thumbnail-1-732x549.jpg]', 'Me Before You- Trước ngày em đến', 'Jojo Moyes', 155400, 500, 1000, '2023-09-15', '2023-09-15','Romance');
+
 
 
 
@@ -66,6 +68,7 @@ INSERT INTO user (fullName, email, phone, role, avatar, is_active, create_at, up
 ('John Doe', 'john.doe@example.com', '123456789', 'Admin', 'avatar1.jpg', TRUE, '2023-09-15', '2023-09-15'),
 ('Alice Smith', 'alice.smith@example.com', '987654321', 'User', 'avatar2.jpg', TRUE, '2023-09-16', '2023-09-16'),
 ('Bob Johnson', 'bob.johnson@example.com', '555555555', 'User', 'avatar3.jpg', FALSE, '2023-09-17', '2023-09-17');
+
 
 
 
