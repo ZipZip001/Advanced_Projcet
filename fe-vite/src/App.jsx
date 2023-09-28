@@ -15,14 +15,14 @@ import Home from './components/home/index';
 import ProtectedRoute from './pages/ProtectedRoute/RoleBaseRoute';
 
 //pages
-import LoginPage from './pages/Login';
+import LoginPage from './pages/login';
 import ContactPage from './pages/contact/contact';
-import RegisterPage from './pages/Register';
+import RegisterPage from './pages/register';
 import AdminPage from './pages/Admin/index'
 import BookPage from './pages/Book';
 import ViewOrder from './components/order/ViewOrder';
 
-import { fetchAccount } from './services/api';
+import { fetchAccountOut } from './services/api';
 
 import { doGetAccountAction } from './redux/account/accountSlice';
 
@@ -58,7 +58,7 @@ export default function App() {
   const getAccount = async () => {
     if(window.location.pathname === '/login' )return;
    
-    const res = await fetchAccount();
+    const res = await fetchAccountOut();
     if(res && res.data){
       dispatch(doGetAccountAction(res.data))
     }

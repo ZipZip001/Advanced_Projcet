@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Col, Popconfirm, Table, message, notification } from 'antd';
-import {  callListBookOut } from '../../../services/api';
+import {  callDeleteBookOut, callListBookOut } from '../../../services/api';
 import InputSearch from './InputSearch';
 
 import { CloudUploadOutlined, DeleteTwoTone, EditTwoTone, ExportOutlined, PlusOutlined, ReloadOutlined } from '@ant-design/icons';
@@ -48,20 +48,20 @@ const BookTable = () => {
     const columns = [
         {
           title: 'Id',
-          dataIndex: '_id',
+          dataIndex: 'id',
           render:(text, record, index) =>{
             return(
                 <a href="#" onClick={() =>{
                     setDataViewDetail(record);
                     setOpenViewDetail(true)
-                }}>{record._id}
+                }}>{record.id}
                 </a>
             )
           }
         },
         {
           title: 'Tên sách',
-          dataIndex: 'mainText',
+          dataIndex: 'maintext',
           sorter:  true ,
         },
         {
@@ -95,9 +95,9 @@ const BookTable = () => {
                   <>
                     <Popconfirm
                         placement="leftTop"
-                        title={"Xác nhận xóa user"}
-                        description={"Bạn có chắc chắn muốn xóa user này ?"}
-                        onConfirm={() => handleDeleteBook(record._id)}
+                        title={"Xác nhận xóa sách"}
+                        description={"Bạn có chắc chắn muốn xóa sách này ?"}
+                        onConfirm={() => handleDeleteBook(record.id)}
                         okText="Xác nhận"
                         cancelText="Hủy"
                     >
@@ -131,15 +131,13 @@ const BookTable = () => {
     };
 
     const handleDeleteBook = async (userId) =>{
-        const res = await callDeleteUser(userId);
-        if (res && res.data){
+        const res = await callDeleteBookOut(userId);
+        if (res){
             message.success('Xóa sách thành công');
             fetchBook();
         }else{
-            notification.error({
-                message: 'Có lỗi xảy ra',
-                description: res.message,
-            });
+            message.success('Xóa sách thành công');
+            fetchBook();
         }
     }
 
@@ -208,7 +206,7 @@ const BookTable = () => {
                     dataSource={listBook} 
                     loading = {isLoading}
                     onChange={onChange} 
-                    rowKey="_id"
+                    rowKey="id"
                     pagination={ 
                         {   
                             current: current, 

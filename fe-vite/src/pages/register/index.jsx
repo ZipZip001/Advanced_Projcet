@@ -3,7 +3,7 @@ import { Button, Checkbox, Descriptions, Form, Input, message, notification } fr
 import './register.scss';
 import { Link, useNavigate } from 'react-router-dom';
 // folder
-import { callRegister } from '../../services/api';
+import { callRegisterOut } from '../../services/api';
 
 const  RegisterPage = () => {
     const navigate = useNavigate();
@@ -12,9 +12,9 @@ const  RegisterPage = () => {
     const onFinish = async(values) => {
         const {fullName, email, password, phone} =values;
         setIsSubmit(true);
-        const res = await callRegister(fullName, email, password, phone);
+        const res = await callRegisterOut(fullName, email, password, phone);
         setIsSubmit(false);
-        if(res?.data?._id){
+        if(res?.id){
             message.success("Đăng ký tài khoản thành công");
             navigate('/login')
         }else{

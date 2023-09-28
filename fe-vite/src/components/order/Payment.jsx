@@ -22,7 +22,7 @@
 //         setIsSubmit(true);
 //         const detailOrder = carts.map(item => {
 //             return{
-//                 bookName: item.detail.mainText,
+//                 bookName: item.detail.maintext,
 //                 quantity: item.quantity,
 //                 _id: item._id
 //             }

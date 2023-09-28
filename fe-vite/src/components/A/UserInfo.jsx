@@ -42,9 +42,9 @@ const UserInfo = () => {
     };
     
     const onFinish = async (values) => {
-        const {fullName, phone, _id} = values
+        const {fullName, phone, id} = values
         setIsSubmit(true)
-        const res = await callUpdateUserInfo (_id, phone, fullName, avatar);
+        const res = await callUpdateUserInfo (id, phone, fullName, avatar);
 
         if(res && res.data){
             //upload redux

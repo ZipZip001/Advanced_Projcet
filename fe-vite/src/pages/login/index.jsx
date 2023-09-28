@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 
 //call folder
 import './login.scss'
-import { callLogin } from '../../services/api';
+import { callLoginOut } from '../../services/api';
 import { doLoginAction } from '../../redux/account/accountSlice';
 
 
@@ -17,9 +17,9 @@ const LoginPage = () => {
     const dispatch = useDispatch();
 
     const onFinish = async(values) => {
-        const { username, password } = values;
+        const { email, password } = values;
         setIsSubmit(true);
-        const res = await callLogin( username, password );
+        const res = await callLoginOut( email, password );
         setIsSubmit(false);
 
         if(res?.data){
@@ -55,11 +55,11 @@ return(
                             <Form.Item
                                 labelCol= {{span:24}} 
                                 label="Email"
-                                name="username"
+                                name="email"
                                 rules={[
                                     {
                                     required: true,
-                                    message: 'Please input your username!',
+                                    message: 'Please input your eamil!',
                                     },
                                 ]}
                                 >

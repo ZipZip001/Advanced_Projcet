@@ -7,13 +7,13 @@ const UserViewDetail = (props) => {
   const [placement, setPlacement] = useState('left');
 
   // const [dataViewDetail, setDataViewDetail] = useState();
-  const {openViewDetail, dataViewDetail} = props;
+  const {openViewDetail, dataViewDetail, setOpenViewDetail} = props;
 
   const showDrawer = () => {
     setOpen(true);
   };
   const onClose = () => {
-    setOpen(false);
+    setOpenViewDetail(false);
   };
   const onChange = (e) => {
     setPlacement(e.target.value);
@@ -35,7 +35,7 @@ const UserViewDetail = (props) => {
                 bordered
                 column={2}
                 >
-                <Descriptions.Item label="Id"> {dataViewDetail?._id}</Descriptions.Item> 
+                <Descriptions.Item label="Id"> {dataViewDetail?.id}</Descriptions.Item> 
                 <Descriptions.Item label="Họ tên"> {dataViewDetail?.fullName}</Descriptions.Item> 
                 <Descriptions.Item label="Eamil"> {dataViewDetail?.email}</Descriptions.Item> 
                 <Descriptions.Item label="Số điện thoại"> {dataViewDetail?.phone}</Descriptions.Item> 

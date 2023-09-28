@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { callFetchListBookById } from "../../services/api";
+import { callFetchListBookByIdOut } from "../../services/api";
 import ViewDetail from "../../components/Book/ViewDetail";
 
 const BookPage = () => {
@@ -44,7 +44,7 @@ const BookPage = () => {
     }
     
     const fetchBook = async (id) => {
-        const res = await callFetchListBookById(id);
+        const res = await callFetchListBookByIdOut(id);
         if(res && res.data){
             let raw = res.data; 
             //process data

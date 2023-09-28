@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Divider, Form, Input, Modal, message, notification } from 'antd';
-import { callUpdateUser } from '../../../services/api';
+import { callUpdateUserOut } from '../../../services/api';
 
 
 const UserModalUpdate = (props) => {
@@ -10,21 +10,16 @@ const UserModalUpdate = (props) => {
     const [form] = Form.useForm();
 
     const onFinish = async (values) => {
-        const {fullName, _id, phone} = values;
+        const {fullName, id, phone} = values;
         setIsSubmit(true);
-        const res = await callUpdateUser(fullName, _id, phone);
+        const res = await callUpdateUserOut(fullName, id, phone);
 
-       if(res && res.data){
+
             message.success('Cập nhất user thành công');
             form.resetFields(); // Xóa hết data sau khi tạo thành công
             setOpenModalUpdate(false);
             await props.fetchUser();
-        }else{
-            notification.error({
-               message: "Đã có lỗi xảy ra",
-               description: res.message
-            })
-        }
+
         setIsSubmit(false);
     }
 
@@ -57,7 +52,7 @@ const UserModalUpdate = (props) => {
                 hidden
                 labelCol={{span: 24}}
                 label="Id"
-                name="_id"
+                name="id"
                 rules={[{required: true, message: 'Vui lòng nhập Id'}]}
             >
             <Input/>

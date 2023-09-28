@@ -4,7 +4,7 @@ import { Dropdown, Layout, Menu, Space, Switch, message } from 'antd';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './layout.scss';
-import { callLogout } from '../../services/api';
+import { callLogoutOut } from '../../services/api';
 import { doLogoutAction } from '../../redux/account/accountSlice';
 const {Content, Footer, Sider} = Layout
 
@@ -70,7 +70,7 @@ const LayoutAdmin = () => {
     const dispatch = useDispatch();
 
     const handleLogout = async () => {
-        const res = await callLogout();
+        const res = await callLogoutOut();
         if (res && res.data) {
             dispatch(doLogoutAction());
             message.success('Đăng xuất thành công');

@@ -10,7 +10,7 @@ import './header.scss';
 
 import {Avatar, Badge, Divider, Drawer, Dropdown, Popover, Space, message } from 'antd';
 import { DownOutlined } from "@ant-design/icons";
-import { callLogout } from "../../services/api";
+import { callLogoutOut } from "../../services/api";
 import { doLogoutAction } from "../../redux/account/accountSlice";
 import ManagerAccount from "../A/ManagerAccount";
 
@@ -38,7 +38,7 @@ const Header = ({searchTerm, setSearchTerm}) => {
     };
 
     const handleLogout = async () => {
-        const res = await callLogout();
+        const res = await callLogoutOut();
         if (res && res.data) {
             dispatch(doLogoutAction());
             message.success('Đăng xuất thành công');
@@ -76,7 +76,8 @@ const Header = ({searchTerm, setSearchTerm}) => {
         })
     }
 
-    const urlAvatar = `${import.meta.env.VITE_BACKEND_URL}/images/avatar/${user?.avatar}`;
+    // const urlAvatar = `${import.meta.env.VITE_BACKEND_URL}/images/avatar/${user?.avatar}`;
+    const urlAvatar = user?.avatar;
 
     const contentPopover = () =>{
         return(
@@ -86,8 +87,10 @@ const Header = ({searchTerm, setSearchTerm}) => {
                     {carts?.map((book, index) =>{
                         return(
                             <div className="book" key={`book-${index}`}>
-                                <img src={`${import.meta.env.VITE_BACKEND_URL}/images/book/${book?.detail?.thumbnail}`} />
-                                <div>{book?.detail?.mainText}</div>
+                                {/* <img src={`${import.meta.env.VITE_BACKEND_URL}/images/book/${book?.detail?.thumbnail}`} /> */}
+                            
+                                <img src={book?.detail?.thumnail} alt="" />
+                                <div>{book?.detail?.maintext}</div>
                                 <div className="price">
                                     {new Intl.NumberFormat('vi-VN', {style:'currency', currency:'VND'}).format(book?.detail?.price) ?? 0}
                                 </div>

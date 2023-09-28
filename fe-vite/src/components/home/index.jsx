@@ -148,7 +148,7 @@ const Home = () => {
 
     const handleRedirectBook =(book) =>{
         const slug = convertSlug(book.maintext);
-        navigate(`/book/${slug}?id=${book._id}`)
+        navigate(`/book/${slug}?id=${book.id}`)
     }
 
     const items = [

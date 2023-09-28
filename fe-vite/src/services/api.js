@@ -93,3 +93,55 @@ export const callListBookOut = (query) => {
 export const callCategoryOut = () => {
     return axios.get(`/api/category`)
 }
+export const callFetchListBookByIdOut = (id) => {
+    return axios.get(`/api/book/${id}`)
+}
+
+// export const callCreateAUserOut = (fullName, password, email, phone) => {
+//     return axios.post(`/api/user`,{fullName, password, email, phone} )
+// }
+
+// export const callUpdateUserOut = (fullName, _id, phone) => {
+//     return axios.put(`/api/user`,{fullName, _id, phone} )
+// }
+
+export const callDeleteBookOut = ( id) => {
+    return axios.delete(`/api/book/${id}`)
+}
+
+
+
+// api outside for Login
+export const callRegisterOut = (fullName, email, password, phone) => {
+    return axios.post('/api/user/register', {fullName, email, password, phone});
+}
+
+export const callLoginOut = (email, password) => {
+    return axios.post('/api/user/login', { email, password});
+}
+
+export const fetchAccountOut = () => {
+    return axios.get('/api/user/profile');
+}
+
+export const callLogoutOut = () => {
+    return axios.post('/api/user/logout')
+}
+
+
+// user Admin Out
+export const callFetchListUserOut = (query) => {
+    return axios.get(`/api/user?${query}`)
+}
+
+export const callCreateAUserOut = (fullName, password, email, phone) => {
+    return axios.post(`/api/user`,{fullName, password, email, phone} )
+}
+
+export const callUpdateUserOut = (fullName, _id, phone) => {
+    return axios.put(`/api/user`,{fullName, _id, phone} )
+}
+
+export const callDeleteUserOut = ( id) => {
+    return axios.delete(`/api/user/${id}`)
+}

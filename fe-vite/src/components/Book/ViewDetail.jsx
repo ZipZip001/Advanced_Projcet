@@ -47,7 +47,7 @@ const ViewDetail = (props) => {
     }
     
     const handleAddToCart = (quantity, book) => {
-        dispatch(doAddBookAction({ quantity, _id: book._id, detail: book}))
+        dispatch(doAddBookAction({ quantity, id: book.id, detail: book}))
     }
 
     // const onChange = (value) => {
@@ -59,7 +59,7 @@ const ViewDetail = (props) => {
         <div style={{ background: '#efefef', padding: "20px 0" }}>
             <div className='view-detail-book' style={{ maxWidth: 1440, margin: '0 auto', minHeight: "calc(100vh - 150px)" }}>
                 <div style={{ padding: "20px", background: '#fff', borderRadius: 5 }}>
-                    {dataBook && dataBook._id
+                    {dataBook && dataBook.id
                     ?
                     <Row gutter={[20, 20]}>
                     <Col md={10} sm={0} xs={0}>
@@ -87,17 +87,17 @@ const ViewDetail = (props) => {
                             />
                         </Col>
                         <Col span={24}>
-                            <div className='author'>Tác giả: <a href='#'>Jo Hemmings</a> </div>
-                            <div className='title'>How Psychology Works - Hiểu Hết Về Tâm Lý Học</div>
+                            <div className='author'> Tên tác giả  <a href='#'>{dataBook.author}</a> </div>
+                            <div className='title'>{dataBook.maintext}</div>
                             <div className='rating'>
                                 <Rate value={5} disabled style={{ color: '#ffce3d', fontSize: 12 }} />
                                 <span className='sold'>
                                     <Divider type="vertical" />
-                                    Đã bán 6969</span>
+                                    Đã bán {dataBook.sold}</span>
                             </div>
                             <div className='price'>
                                 <span className='currency'>
-                                    {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(696966666)}
+                                    {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(dataBook.price)}
                                 </span>
                             </div>
                             <div className='delivery'>

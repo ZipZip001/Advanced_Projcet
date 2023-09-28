@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Divider, Form, Input, Modal, message, notification } from 'antd';
-import { callCreateAUser } from '../../../services/api';
+import { callCreateAUserOut } from '../../../services/api';
 
 
 const UserModalCreate = (props) => {
@@ -11,7 +11,7 @@ const UserModalCreate = (props) => {
     const onFinish = async (values) => {
         const {fullName, password, email, phone} = values;
         setIsSubmit(true);
-       const res = await callCreateAUser(fullName, password, email, phone);
+       const res = await callCreateAUserOut(fullName, password, email, phone);
 
        if(res && res.data){
             message.success('Tạo user thành công');

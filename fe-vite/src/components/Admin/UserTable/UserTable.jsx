@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Col, Popconfirm, Table, message, notification } from 'antd';
-import { callDeleteUser, callFetchListUser } from '../../../services/api';
+import { callDeleteUserOut, callFetchListUserOut } from '../../../services/api';
 import InputSearch from './InputSearch';
 
 import { CloudUploadOutlined, DeleteTwoTone, EditTwoTone, ExportOutlined, PlusOutlined, ReloadOutlined } from '@ant-design/icons';
@@ -40,7 +40,7 @@ const UserTable = () => {
             query +=`&${searchFilter}`
         }
 
-        const res = await callFetchListUser(query);
+        const res = await callFetchListUserOut(query);
         if (res && res.data) {
             setListUser(res.data.result);
             setTotal(res.data.meta.total);
@@ -52,13 +52,13 @@ const UserTable = () => {
     const columns = [
         {
           title: 'Id',
-          dataIndex: '_id',
+          dataIndex: 'id',
           render:(text, record, index) =>{
             return(
                 <a href="#" onClick={() =>{
                     setDataViewDetail(record);
                     setOpenViewDetail(true)
-                }}>{record._id}
+                }}>{record.id}
                 </a>
             )
           }
@@ -87,7 +87,7 @@ const UserTable = () => {
                         placement="leftTop"
                         title={"Xác nhận xóa user"}
                         description={"Bạn có chắc chắn muốn xóa user này ?"}
-                        onConfirm={() => handleDeleteUser(record._id)}
+                        onConfirm={() => handleDeleteUser(record.id)}
                         okText="Xác nhận"
                         cancelText="Hủy"
                     
@@ -122,16 +122,10 @@ const UserTable = () => {
     };
 
     const handleDeleteUser = async (userId) =>{
-        const res = await callDeleteUser(userId);
-        if (res && res.data){
+        const res = await callDeleteUserOut(userId);
             message.success('Xóa user thành công');
             fetchUser();
-        }else{
-            notification.error({
-                message: 'Có lỗi xảy ra',
-                description: res.message,
-            });
-        }
+
     }
 
 
@@ -200,7 +194,7 @@ const UserTable = () => {
                     dataSource={listUser} 
                     loading = {isLoading}
                     onChange={onChange} 
-                    rowKey="_id"
+                    rowKey="id"
                     pagination={ 
                         {   
                             current: current, 

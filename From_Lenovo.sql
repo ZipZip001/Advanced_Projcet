@@ -52,22 +52,28 @@ VALUES
 ("Mystery"),
 ("Romance");
 
-CREATE TABLE user (
+CREATE TABLE usertable (
     id INT AUTO_INCREMENT PRIMARY KEY,
-	fullName VARCHAR(255),
+    full_name VARCHAR(255),
     email VARCHAR(255),
     phone VARCHAR(255),
     role VARCHAR(255),
     avatar VARCHAR(255),
     is_active Boolean,
+    password VARCHAR(255), -- Thêm trường password
     create_at DATE,
     update_at Date
 );
 
-INSERT INTO user (fullName, email, phone, role, avatar, is_active, create_at, update_at) VALUES
-('John Doe', 'john.doe@example.com', '123456789', 'Admin', 'avatar1.jpg', TRUE, '2023-09-15', '2023-09-15'),
-('Alice Smith', 'alice.smith@example.com', '987654321', 'User', 'avatar2.jpg', TRUE, '2023-09-16', '2023-09-16'),
-('Bob Johnson', 'bob.johnson@example.com', '555555555', 'User', 'avatar3.jpg', FALSE, '2023-09-17', '2023-09-17');
+-- INSERT INTO userdata (full_name, email, phone, role, avatar, is_active, password, create_at, update_at) VALUES
+-- ('John Doe', 'john.doe@example.com', '123456789', 'Admin', 'avatar1.jpg', TRUE,'123456', '2023-09-15', '2023-09-15'),
+-- ('Alice Smith', 'alice.smith@example.com', '987654321', 'User', 'avatar2.jpg', TRUE,'123456', '2023-09-16', '2023-09-16'),
+-- ('Bob Johnson', 'bob.johnson@example.com', '555555555', 'User', 'avatar3.jpg', FALSE,'123456', '2023-09-17', '2023-09-17');
+
+INSERT INTO userdata (full_name, email, phone, role, avatar, is_active, password, create_at, update_at) VALUES
+('John Doe', 'john.doe@example.com', '123456789', 'Admin', 'avatar1.jpg', TRUE, '$2a$10$7WIPd9U8yqu6H3ct9oBPIOMuYdQ8tD/fcCxOzo0fOjxyxNADT6n5e', '2023-09-15', '2023-09-15'),
+('Alice Smith', 'alice.smith@example.com', '987654321', 'User', 'avatar2.jpg', TRUE, '$2a$10$7WIPd9U8yqu6H3ct9oBPIOMuYdQ8tD/fcCxOzo0fOjxyxNADT6n5e', '2023-09-16', '2023-09-16'),
+('Bob Johnson', 'bob.johnson@example.com', '555555555', 'User', 'avatar3.jpg', FALSE, '$2a$10$7WIPd9U8yqu6H3ct9oBPIOMuYdQ8tD/fcCxOzo0fOjxyxNADT6n5e', '2023-09-17', '2023-09-17');
 
 
 

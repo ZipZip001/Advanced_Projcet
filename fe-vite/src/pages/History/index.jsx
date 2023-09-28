@@ -37,7 +37,7 @@ const HistoryPage = () => {
           {record.detail.map((item, index) => (
             <li key={index}>
               <p>Sách: {item.bookName} - Số lượng: {item.quantity} </p>
-              {/* <p>ID: {item._id}</p> */}
+              {/* <p>ID: {item.id}</p> */}
             </li>
           ))}
         </ul>

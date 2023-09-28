@@ -14,8 +14,8 @@ const InputSearch = (props) => {
 
     const onFinish = (values) => {
         let query = "";
-        if(values.mainText){
-            query += `&mainText=/${values.mainText}/i`
+        if(values.maintext){
+            query += `&maintext=/${values.maintext}/i`
         }
         if(values.author){
             query += `&author=/${values.author}/i`
@@ -59,7 +59,7 @@ const InputSearch = (props) => {
                 <Col span={8}>
                     <Form.Item 
                     labelCol={{span: 24}}
-                    name={`mainText`}
+                    name={`maintext`}
                     label={`Tên sách`}>
                         <Input/>
                     </Form.Item>

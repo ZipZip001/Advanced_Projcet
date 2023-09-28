@@ -49,7 +49,7 @@ export const accountSlice = createSlice({
     doUpdateUserInfoAction:(state, action) =>{
       state.user.avatar = action.payload.avatar;
       state.user.phone = action.payload.phone;
-      state.user.phone = action.payload.fullName;
+      state.user.fullName = action.payload.fullName;
     },
     doUploadAvatarAction: (state, action) => {
       state.temAvatar = action.payload.avatar

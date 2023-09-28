@@ -36,7 +36,7 @@ const ViewOrder = (props) => {
     const handleOnChangeInput = (value, book) => {
         if(!value || value <1) return;
         if(!isNaN(value)){
-            dispatch(doUpdateCartAction({quantity: value, detail: book, _id: book._id}))
+            dispatch(doUpdateCartAction({quantity: value, detail: book, id: book.id}))
         }
     }
 
@@ -44,9 +44,9 @@ const ViewOrder = (props) => {
         setIsSubmit(true);
         const detailOrder = carts.map(item => {
             return{
-                bookName: item.detail.mainText,
+                bookName: item.detail.maintext,
                 quantity: item.quantity,
-                _id: item._id,
+                id: item.id,
             }
         })
 
@@ -85,9 +85,11 @@ const ViewOrder = (props) => {
                             return(
                                 <div className='order-book' key ={`index-${index}`}>
                                     <div className='book-content'>
-                                    <img src={`${import.meta.env.VITE_BACKEND_URL}/images/book/${book?.detail?.thumbnail}`} />
+                                        
+                                        <img src={book?.detail?.thumnail} alt="" />
+                                    {/* <img src={`${import.meta.env.VITE_BACKEND_URL}/images/book/${book?.detail?.thumbnail}`} /> */}
                                         <div className='title'>
-                                            {book?.detail?.mainText}
+                                            {book?.detail?.maintext}
                                         </div>
                                         <div className='price'>
                                             {book?.detail?.p}
@@ -102,7 +104,7 @@ const ViewOrder = (props) => {
                                         </div>
                                         <DeleteOutlined 
                                             style={{ cursor: "pointer"}}
-                                            onClick={() => dispatch(doDeleteItemCartAction({_id: book._id}))}
+                                            onClick={() => dispatch(doDeleteItemCartAction({id: book.id}))}
                                         />
                                     </div>
                                 </div>

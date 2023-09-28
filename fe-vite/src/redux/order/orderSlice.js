@@ -14,14 +14,14 @@ export const orderSlice = createSlice({
         let carts = state.carts;
         const item = action.payload;
 
-        let isExistindex = carts.findIndex(c => c._id === item._id);
+        let isExistindex = carts.findIndex(c => c.id === item.id);
         if ( isExistindex > -1){
             carts[isExistindex].quantity = carts[isExistindex].quantity + item.quantity
             if(carts[isExistindex].quantity > carts[isExistindex].detail.quantity){
                 carts[isExistindex].quantity = carts[isExistindex].detail.quantity;
             }
         }else{
-            carts.push({quantity: item.quantity, _id: item._id, detail: item.detail})
+            carts.push({quantity: item.quantity, id: item.id, detail: item.detail})
         }
         //update reduce
         state.carts = carts;
@@ -31,20 +31,20 @@ export const orderSlice = createSlice({
         let carts = state.carts;
         const item = action.payload;
 
-        let isExistindex = carts.findIndex(c => c._id === item._id);
+        let isExistindex = carts.findIndex(c => c.id === item.id);
         if ( isExistindex > -1){
             carts[isExistindex].quantity = carts[isExistindex].quantity + item.quantity
             if(carts[isExistindex].quantity > carts[isExistindex].detail.quantity){
                 carts[isExistindex].quantity = carts[isExistindex].detail.quantity;
             }
         }else{
-            carts.push({quantity: item.quantity, _id: item._id, detail: item.detail})
+            carts.push({quantity: item.quantity, id: item.id, detail: item.detail})
         }
         //update reduce
         state.carts = carts;
     },
     doDeleteItemCartAction: (state, action) =>{
-        state.carts = state.carts.filter(c => c._id !== action.payload._id)
+        state.carts = state.carts.filter(c => c.id !== action.payload.id)
     },
     doPlaceOrderAction: (state, action) =>{
         state.carts = [];
