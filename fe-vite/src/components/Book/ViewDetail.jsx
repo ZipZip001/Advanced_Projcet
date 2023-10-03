@@ -63,29 +63,21 @@ const ViewDetail = (props) => {
                     ?
                     <Row gutter={[20, 20]}>
                     <Col md={10} sm={0} xs={0}>
-                        <ImageGallery
-                            ref={refGallery}
-                            items={images}
-                            showPlayButton={false} //hide play button
-                            showFullscreenButton={false} //hide fullscreen button
-                            renderLeftNav={() => <></>} //left arrow === <> </>
-                            renderRightNav={() => <></>}//right arrow === <> </>
-                            slideOnThumbnailOver={true}  //onHover => auto scroll images
-                            onClick={() => handleOnClickImage()}
-                        />
+                        <img 
+                            src={dataBook?.thumnail} 
+                            alt="Ảnh bìa sách" 
+                            onClick={() => handleOnClickImage()} 
+                            style={{
+                                maxWidth: "600px", // Điều chỉnh kích thước tối đa theo ý muốn
+                                maxHeight: "600px", // Điều chỉnh kích thước tối đa theo ý muốn
+                                width: "auto", // Cho phép thu nhỏ chiều rộng tự động
+                                height: "auto", // Cho phép thu nhỏ chiều cao tự động
+                                display: "block", // Để căn giữa theo chiều ngang
+                                margin: "0 auto", // Để căn giữa theo chiều ngang
+                            }}
+                            />
                     </Col>
                     <Col md={14} sm={24}>
-                        <Col md={0} sm={24} xs={24}>
-                            <ImageGallery
-                                ref={refGallery}
-                                items={images}
-                                showPlayButton={false} //hide play button
-                                showFullscreenButton={false} //hide fullscreen button
-                                renderLeftNav={() => <></>} //left arrow === <> </>
-                                renderRightNav={() => <></>}//right arrow === <> </>
-                                showThumbnails={false}
-                            />
-                        </Col>
                         <Col span={24}>
                             <div className='author'> Tên tác giả  <a href='#'>{dataBook.author}</a> </div>
                             <div className='title'>{dataBook.maintext}</div>
@@ -119,7 +111,7 @@ const ViewDetail = (props) => {
                                     <BsCartPlus className='icon-cart' />
                                     <span>Thêm vào giỏ hàng</span>
                                 </button>
-                                <button className='now'>Mua ngay</button>
+                                {/* <button className='now'>Mua ngay</button> */}
                             </div>
                         </Col>
                     </Col>

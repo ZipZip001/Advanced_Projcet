@@ -7,7 +7,7 @@ import { CloudUploadOutlined, DeleteTwoTone, EditTwoTone, ExportOutlined, PlusOu
 import UserModalCreate from './UserModalCreate';
 import UserModalUpdate from './UserModalUpdate';
 import UserViewDetail from './UserViewDetail';
-
+import moment from 'moment';
 
 const UserTable = () => {
     const [listUser, setListUser] = useState([]);
@@ -77,6 +77,22 @@ const UserTable = () => {
           title: 'Số điện thoại',
           dataIndex: 'phone',
           sorter:  true ,
+        },
+        {
+            title: 'Ngày tạo',
+            dataIndex: 'createdAt',
+            sorter:  true ,
+            render: (text, record) => {
+                return moment(record.createdAt).format('DD/MM/YYYY');
+            },
+        },
+        {
+            title: 'Ngày cập nhật',
+            dataIndex: 'updatedAt',
+            sorter:  true ,
+            render: (text, record) => {
+                return moment(record.updatedAt).format('DD/MM/YYYY');
+            },
         },
         {
           title: 'Action',

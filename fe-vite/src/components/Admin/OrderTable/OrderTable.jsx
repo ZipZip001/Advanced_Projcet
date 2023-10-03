@@ -121,25 +121,7 @@ const OrderTable = () => {
                 return moment(record.updatedAt).format('DD/MM/YYYY');
             },
           },
-        {
-          title: 'Action',
-          render: (text, record, index) => {
-              return(
-                  <>
 
-                    <EditTwoTone
-                        style={{marginLeft: "20px"}}
-                        onClick={() => {
-                            setOpenModalUpdate(true)
-                            setDataUpdate(record);
-                        }}
-                    >
-                    </EditTwoTone>
-                  </>
-                  
-              )
-          }
-        },
     ];
 
     const onChange = (pagination, filters, sorter, extra) => {
@@ -167,23 +149,6 @@ const OrderTable = () => {
             <div style={{display: 'flex', justifyContent: 'space-between'}}>
                 <span>Bảng đơn hàng</span>
                 <span style={{ display: 'flex', gap: 15}}>
-                    <Button
-                        icon={<ExportOutlined/>}
-                        type= "primary"
-                        // onClick={() => handleExportData()}
-                        >Export
-                    </Button>
-                    <Button
-                        icon={<CloudUploadOutlined/>}
-                        type= "primary"
-                        >Import
-                    </Button>
-                    <Button
-                        icon={<PlusOutlined/>}
-                        type= "primary"
-                        onClick={() => setOpenModalCreate(true)}
-                        >Thêm mới
-                    </Button>
                     <Button
                         onClick={handleReload}
                         icon={<ReloadOutlined/>}

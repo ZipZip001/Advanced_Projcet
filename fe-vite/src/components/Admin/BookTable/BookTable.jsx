@@ -169,17 +169,6 @@ const BookTable = () => {
                 <span>Bảng sách</span>
                 <span style={{ display: 'flex', gap: 15}}>
                     <Button
-                        icon={<ExportOutlined/>}
-                        type= "primary"
-                        // onClick={() => handleExportData()}
-                        >Export
-                    </Button>
-                    <Button
-                        icon={<CloudUploadOutlined/>}
-                        type= "primary"
-                        >Import
-                    </Button>
-                    <Button
                         icon={<PlusOutlined/>}
                         type= "primary"
                         onClick={() => setOpenModalCreate(true)}

@@ -46,12 +46,6 @@ const Header = ({searchTerm, setSearchTerm}) => {
 
     }
 
-    // const res = await callLogoutOut();
-    // if (res && res.data) {
-    //     dispatch(doLogoutAction());
-    //     message.success('Đăng xuất thành công');
-    //     navigate('/')
-    // }
     let items = [
         {
             label: <label style={{ cursor: 'pointer' }} onClick={openManagerAccountModal}>

@@ -76,6 +76,8 @@ const UserModalUpdate = (props) => {
             <Input disabled/>
             </Form.Item>
 
+            
+
             <Form.Item
                 labelCol={{span: 24}}
                 label="Số điện thoại"
