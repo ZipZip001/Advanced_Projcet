@@ -38,14 +38,20 @@ const Header = ({searchTerm, setSearchTerm}) => {
     };
 
     const handleLogout = async () => {
-        const res = await callLogoutOut();
-        if (res && res.data) {
-            dispatch(doLogoutAction());
-            message.success('Đăng xuất thành công');
-            navigate('/')
-        }
+        localStorage.removeItem('access_token');
+        // // Tải lại trang
+        // window.location.reload(true);
+        navigate('/login')
+        message.success('Đăng xuất thành công');
+
     }
 
+    // const res = await callLogoutOut();
+    // if (res && res.data) {
+    //     dispatch(doLogoutAction());
+    //     message.success('Đăng xuất thành công');
+    //     navigate('/')
+    // }
     let items = [
         {
             label: <label style={{ cursor: 'pointer' }} onClick={openManagerAccountModal}>

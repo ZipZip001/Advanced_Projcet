@@ -83,7 +83,7 @@ const UserTable = () => {
           render: (text, record, index) => {
               return(
                   <>
-                    <Popconfirm
+                    {/* <Popconfirm
                         placement="leftTop"
                         title={"Xác nhận xóa user"}
                         description={"Bạn có chắc chắn muốn xóa user này ?"}
@@ -93,7 +93,7 @@ const UserTable = () => {
                     
                     >
                         <DeleteTwoTone/>
-                    </Popconfirm>
+                    </Popconfirm> */}
 
                     <EditTwoTone
                         style={{marginLeft: "20px"}}

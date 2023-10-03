@@ -3,6 +3,8 @@ import ViewOrder from "../../components/order/ViewOrder";
 import './order.scss';
 import {  LoadingOutlined, SmileOutlined, SolutionOutlined, UserOutlined, ShoppingOutlined, CheckCircleTwoTone  } from '@ant-design/icons';
 import { Button, Result, Steps } from "antd";
+// import { useHistory } from 'react-router-dom';
+
 
 const OrderPage = (props) =>{
 

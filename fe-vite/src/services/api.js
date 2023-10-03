@@ -97,13 +97,13 @@ export const callFetchListBookByIdOut = (id) => {
     return axios.get(`/api/book/${id}`)
 }
 
-// export const callCreateAUserOut = (fullName, password, email, phone) => {
-//     return axios.post(`/api/user`,{fullName, password, email, phone} )
-// }
+export const callCreateABookOut = (thumnail, maintext, category, author, price,quantity) => {
+    return axios.post(`/api/book`,{thumnail, maintext, category, author, price,quantity} )
+}
 
-// export const callUpdateUserOut = (fullName, _id, phone) => {
-//     return axios.put(`/api/user`,{fullName, _id, phone} )
-// }
+export const callUpdateBookOut = (thumnail, maintext, category, author, price,quantity) => {
+    return axios.put(`/api/book`,{thumnail, maintext, category, author, price,quantity} )
+}
 
 export const callDeleteBookOut = ( id) => {
     return axios.delete(`/api/book/${id}`)
@@ -139,9 +139,25 @@ export const callCreateAUserOut = (fullName, password, email, phone) => {
 }
 
 export const callUpdateUserOut = (fullName, _id, phone) => {
-    return axios.put(`/api/user`,{fullName, _id, phone} )
+    return axios.put(`/api/user/${_id}`,{fullName, _id, phone} )
 }
 
 export const callDeleteUserOut = ( id) => {
     return axios.delete(`/api/user/${id}`)
+}
+
+
+//order
+export const callPlaceOrderOut = (data) => {
+    return axios.post(`/api/order`,{
+        ...data
+    })
+}
+
+export const callHistoryOut = () => {
+    return axios.get(`/api/history`)
+}
+
+export const callFetchListHistoryOut = (query) => {
+    return axios.get(`/api/order?${query}`)
 }

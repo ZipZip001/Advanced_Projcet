@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Table } from 'antd';
-import { callHistory } from '../../services/api';
+import { callHistoryOut } from '../../services/api';
 import moment from 'moment/moment';
 
 const HistoryPage = () => {
@@ -48,9 +48,9 @@ const HistoryPage = () => {
 
   const fetchHistory = async () =>{
     setIsLoading(true)
-    const res = await callHistory();
-    if (res && res.data) {
-        setListOrder(res.data)
+    const res = await callHistoryOut();
+    if (res) {
+        setListOrder(res)
         console.log('setListOrder:', setListOrder);
     }
     setIsLoading(false);

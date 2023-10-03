@@ -27,7 +27,8 @@ const LoginPage = () => {
             dispatch(doLoginAction(res.user));
 
             message.success("Đăng nhập tài khoản thành công");
-            navigate("/")
+            navigate("/");
+            window.location.reload();
         }else{
             notification.error({
                 message:"Có lỗi xảy ra",

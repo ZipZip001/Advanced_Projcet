@@ -4,7 +4,7 @@ import './home.scss';
 import { useEffect, useState } from 'react';
 import { callCategoryOut, callListBookOut } from '../../services/api';
 import { Link, useNavigate, useOutletContext } from 'react-router-dom';
-import Header from '../Header/header';
+// import Header from '../Header/header';
 const Home = () => {
     const [searchTerm, setSearchTerm] = useOutletContext()
 
@@ -75,7 +75,7 @@ const Home = () => {
             query +=`&${sortQuery}`
         }
         if(searchTerm){
-            query += `&maintext=/${searchTerm}/i`;
+            query += `&maintext=${searchTerm}`;
         }
 
         const res = await callListBookOut(query);
@@ -90,7 +90,7 @@ const Home = () => {
         console.log (">>> check values: " , values)
 
         if(values?.range?.from >=0 && values?.range?.to >= 0){
-            let f = `price>=${values?.range?.from}&price<=${values?.range?.to}`
+            let f = `minPrice=${values?.range?.from}&maxPrice=${values?.range?.to}`
             if(values?.category?.length){
                 const cate = values?.category?.join(",");
                 f += `&category=${cate}`
@@ -222,6 +222,7 @@ const Home = () => {
                                         min={0}
                                         placeholder="đ TỪ"
                                         formatter={(value) => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+
                                     />
                                 </Form.Item>
                                 <span >-</span>

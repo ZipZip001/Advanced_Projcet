@@ -33,6 +33,7 @@ import OrderPage from './pages/Order';
 import HistoryPage from './pages/History';
 import BookTable from './components/Admin/BookTable/BookTable';
 import OutSideBook from './components/Book/OutSideBook';
+import OrderTable from './components/Admin/OrderTable/OrderTable'
 
 
 
@@ -122,6 +123,10 @@ export default function App() {
         {
           path: "book",
           element: <BookTable />,
+        },
+        {
+          path: "order",
+          element: <OrderTable />,
         },
       ],
     },

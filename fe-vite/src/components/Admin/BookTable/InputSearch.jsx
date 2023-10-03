@@ -15,13 +15,13 @@ const InputSearch = (props) => {
     const onFinish = (values) => {
         let query = "";
         if(values.maintext){
-            query += `&maintext=/${values.maintext}/i`
+            query += `&maintext=${values.maintext}`
         }
         if(values.author){
-            query += `&author=/${values.author}/i`
+            query += `&author=${values.author}`
         }
         if(values.category){
-            query += `&category=/${values.category}/i`
+            query += `category=${values.category}`
         }
 
         if(query){

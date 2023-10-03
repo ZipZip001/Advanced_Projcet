@@ -40,7 +40,7 @@ const items = [
     },
 
     {
-        label: <Link to='/admin/orders'>Manager Orders</Link>,
+        label: <Link to='/admin/order'>Manager Orders</Link>,
         key: 'order',
         icon:<ExceptionOutlined/>
     },
@@ -70,16 +70,25 @@ const LayoutAdmin = () => {
     const dispatch = useDispatch();
 
     const handleLogout = async () => {
-        const res = await callLogoutOut();
-        if (res && res.data) {
-            dispatch(doLogoutAction());
-            message.success('Đăng xuất thành công');
-            navigate('/')
-        }
+        localStorage.removeItem('access_token');
+
+        message.success('Đăng xuất thành công');
+        navigate('/')
+            // Tải lại trang
+            window.location.reload();
     }
 
     // Drop
     const itemsDropdown = [
+
+        {
+            label: <label >
+                    <Link to="/" style={{ cursor: 'pointer', textDecoration: 'none', color: 'black'}}>
+                        Trang chủ
+                    </Link>
+                    </label>,
+            key: 'mainpage',
+        },
         {
             label: <label style={{ cursor: 'pointer' }}>Quản lý tài khoản</label>,
             key: 'account',
